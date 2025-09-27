@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Notes</title>
+    <style>
+        @page {
+            margin: 0.75in;
+            size: A4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: white;
+            font-size: 12pt;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #1e3d59;
+            font-size: 28pt;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #2c5282;
+            font-size: 18pt;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            background: linear-gradient(90deg, #f8f9fa 0%, white 100%);
+            padding: 10px 0 10px 15px;
+        }
+        
+        h3 {
+            color: #2d3748;
+            font-size: 14pt;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #4a5568;
+            font-size: 12pt;
+            margin: 15px 0 8px 0;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+            color: #2d3748;
+        }
+        
+        ul, ol {
+            margin: 10px 0 15px 25px;
+            color: #2d3748;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        code {
+            background: #f7fafc;
+            color: #e53e3e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 11pt;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .code-block {
+            background: #1a202c;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            margin: 15px 0;
+            border: 1px solid #2d3748;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+        
+        .code-block .tag {
+            color: #81c784;
+        }
+        
+        .code-block .attr {
+            color: #64b5f6;
+        }
+        
+        .code-block .string {
+            color: #ffb74d;
+        }
+        
+        .code-block .comment {
+            color: #90a4ae;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #5a67d8;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        tr:hover {
+            background: #e6fffa;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #4c51bf;
+        }
+        
+        .important {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        
+        .note {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            margin: 30px 0;
+            border-radius: 1px;
+        }
+        
+        .tag-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px 0;
+            font-size: 10pt;
+            font-weight: 500;
+        }
+        
+        strong {
+            color: #1a202c;
+            font-weight: 700;
+        }
+        
+        em {
+            color: #2d3748;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                font-size: 11pt;
+            }
+            
+            h1 { font-size: 24pt; }
+            h2 { font-size: 16pt; }
+            h3 { font-size: 13pt; }
+            
+            .code-block {
+                font-size: 9pt;
+            }
+            
+            table {
+                font-size: 9pt;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Notes</h1>
+        
+        <div class="section-divider"></div>
+        
+        <div class="highlight">
+            <h3>HTML (HyperText Markup Language)</h3>
+            <p>HTML is basically the base of every website you see. It tells the browser how to structure and display the content. Think of it like the skeleton of the webpage.</p>
+        </div>
+        
+        <ul>
+            <li><strong>Hyper text:</strong> the text which can be linked to other texts or resources.</li>
+            <li><strong>Markup:</strong> It's called a <strong>markup language</strong> because it uses <strong>tags</strong> (like <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;img&gt;</code>) to "mark up" text and other content, telling the browser how to display them. In simple words it uses special tags to define structure and meaning of the content.</li>
+            <li><strong>Language:</strong> a set of rules to write a web page or communicate with the Browser.</li>
+        </ul>
+        
+        <div class="important">
+            <strong>Important:</strong> HTML is not a programming language because it is a markup language (it can provide structure and meaning but can't provide functionality).
+        </div>
+        
+        <h2>Importance & Role of HTML</h2>
+        
+        <ul>
+            <li><strong>Structure:</strong> Defines how text, images, links, and media are placed.</li>
+            <li><strong>Accessibility:</strong> Helps screen readers and assistive technologies understand content.</li>
+            <li><strong>SEO:</strong> Search engines read HTML to rank websites.</li>
+            <li><strong>Presentation:</strong> Provides meaningful structure before CSS styles it.</li>
+            <li><strong>Universal:</strong> Works across all devices and browsers.</li>
+        </ul>
+        
+        <div class="section-divider"></div>
+        
+        <h2>Boilerplate</h2>
+        
+        <p>A <strong>boilerplate</strong> is a <strong>basic template or starting code</strong> that contains the <strong>essential structure</strong> needed for a project.</p>
+        
+        <p>In HTML, a boilerplate is the <strong>minimum HTML code</strong> you need to make a web page work properly in browsers.</p>
+        
+        <div class="code-block">
+<span class="comment">&lt;!-- HTML5 Boilerplate --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="string">"en"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="string">"UTF-8"</span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"viewport"</span> <span class="attr">content=</span><span class="string">"width=device-width, initial-scale=1.0"</span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;title&gt;</span>My Webpage<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Hello World!<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+        </div>
+        
+        <h3>Boilerplate Breakdown:</h3>
+        <ul>
+            <li><code>&lt;!DOCTYPE html&gt;</code> → tells the browser this is an HTML5 document.</li>
+            <li><code>&lt;html lang="en"&gt;</code> → root element and <strong>lang="en"</strong> means that the language here I am using is English.</li>
+            <li><code>&lt;head&gt;</code> → meta info (title, encoding, character set, style etc.)</li>
+            <li><code>&lt;meta charset="UTF-8"&gt;</code> → Supports all characters (English, Hindi, emojis, etc).</li>
+            <li><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> → Makes site responsive on mobile.</li>
+            <li><strong><code>content="width=device-width, initial-scale=1.0"</code></strong>
+                <ul>
+                    <li><strong><code>width=device-width</code></strong> → The page width should <strong>match the device's screen width</strong>. Without this, mobile browsers might show your page zoomed out.</li>
+                    <li><strong><code>initial-scale=1.0</code></strong> → The page should <strong>start with normal zoom</strong> (1x).</li>
+                </ul>
+            </li>
+            <li><code>&lt;title&gt;</code> → Title shown on browser tab.</li>
+            <li><code>&lt;body&gt;</code> → where the visible content goes on the web site.</li>
+        </ul>
+        
+        <div class="page-break"></div>
+        
+        <h2>Some More Meta Tags</h2>
+        
+        <h3>1. SEO Related</h3>
+        
+        <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"description"</span> <span class="attr">content=</span><span class="string">"Short description of your page"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"keywords"</span> <span class="attr">content=</span><span class="string">"html, css, javascript"</span><span class="tag">&gt;</span>   <span class="comment">&lt;!-- Deprecated --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"robots"</span> <span class="attr">content=</span><span class="string">"index, follow"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"author"</span> <span class="attr">content=</span><span class="string">"John Doe"</span><span class="tag">&gt;</span>
+        </div>
+        
+        <ul>
+            <li><strong>description</strong> → summary for search engines.</li>
+            <li><strong>keywords</strong> → old, ignored by Google.</li>
+            <li><strong>robots</strong> → controls indexing (<code>noindex</code>, <code>nofollow</code>).</li>
+            <li><strong>author</strong> → declares the page's author.</li>
+        </ul>
+        
+        <h3>2. Social Media Sharing</h3>
+        
+        <h4>Open Graph (Facebook, LinkedIn, etc.):</h4>
+        
+        <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="string">"og:title"</span> <span class="attr">content=</span><span class="string">"Page Title"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="string">"og:description"</span> <span class="attr">content=</span><span class="string">"Page description here"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="string">"og:image"</span> <span class="attr">content=</span><span class="string">"image.jpg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="string">"og:url"</span> <span class="attr">content=</span><span class="string">"https://example.com"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property=</span><span class="string">"og:type"</span> <span class="attr">content=</span><span class="string">"website"</span><span class="tag">&gt;</span>
+        </div>
+        
+        <h4>Twitter Cards:</h4>
+        
+        <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"twitter:card"</span> <span class="attr">content=</span><span class="string">"summary_large_image"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"twitter:title"</span> <span class="attr">content=</span><span class="string">"Page Title"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"twitter:description"</span> <span class="attr">content=</span><span class="string">"Short description"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"twitter:image"</span> <span class="attr">content=</span><span class="string">"image.jpg"</span><span class="tag">&gt;</span>
+        </div>
+        
+        <h3>3. Browser Control & Redirect</h3>
+        
+        <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">http-equiv=</span><span class="string">"X-UA-Compatible"</span> <span class="attr">content=</span><span class="string">"IE=edge"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">http-equiv=</span><span class="string">"refresh"</span> <span class="attr">content=</span><span class="string">"10; url=https://example.com"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">http-equiv=</span><span class="string">"refresh"</span> <span class="attr">content=</span><span class="string">"30"</span><span class="tag">&gt;</span> <span class="comment">&lt;!-- auto reload --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">http-equiv=</span><span class="string">"Content-Security-Policy"</span> <span class="attr">content=</span><span class="string">"default-src 'self'"</span><span class="tag">&gt;</span>
+        </div>
+        
+        <ul>
+            <li><strong>X-UA-Compatible</strong> → IE rendering engine (legacy).</li>
+            <li><strong>refresh + URL</strong> → redirect after delay.</li>
+            <li><strong>refresh without URL</strong> → auto reload same page.</li>
+            <li><strong>CSP</strong> → adds security restrictions (e.g., no external scripts).</li>
+        </ul>
+        
+        <h3>4. Mobile & UI Enhancement</h3>
+        
+        <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">name=</span><span class="string">"theme-color"</span> <span class="attr">content=</span><span class="string">"#0d6efd"</span><span class="tag">&gt;</span>
+        </div>
+        
+        <ul>
+            <li><strong>theme-color</strong> → changes browser top bar color on mobile (useful for PWAs).</li>
+        </ul>
+        
+        <div class="section-divider"></div>
+        
+        <h2>HTML Tags</h2>
+        
+        <ul>
+            <li><strong>HTML tags</strong> are the building blocks of an HTML document.</li>
+            <li>They are <strong>keywords surrounded by angle brackets <code>&lt; &gt;</code></strong>.</li>
+            <li>They tell the browser <strong>what type of content</strong> it is and <strong>how to display it</strong>.</li>
+        </ul>
+        
+        <h3>Structure of a Tag:</h3>
+        <ul>
+            <li><strong>Opening tag</strong> → <code>&lt;tagname&gt;</code></li>
+            <li><strong>Content</strong> → text, image, or other elements</li>
+            <li><strong>Closing tag</strong> → <code>&lt;/tagname&gt;</code> (not required for self-closing tags)</li>
+            <li><strong>Self closing tag</strong> → <code>&lt;tagname/&gt;</code> there is no closing tag needed and always ends with a (/).</li>
+        </ul>
+        
+        <h3>Self-Closing Tags</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;br&gt;</code></td>
+                    <td>Line break (new line)</td>
+                    <td><code>Hello&lt;br&gt;World</code> → breaks line between Hello and World</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;hr&gt;</code></td>
+                    <td>Horizontal rule / line</td>
+                    <td><code>&lt;hr&gt;</code> → adds a horizontal line</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;img&gt;</code></td>
+                    <td>Image</td>
+                    <td><code>&lt;img src="image.jpg" alt="My Image"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;input&gt;</code></td>
+                    <td>Input field</td>
+                    <td><code>&lt;input type="text" placeholder="Enter name"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;link&gt;</code></td>
+                    <td>Link to external resource (CSS, favicon)</td>
+                    <td><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;meta&gt;</code></td>
+                    <td>Metadata for document (charset, viewport)</td>
+                    <td><code>&lt;meta charset="UTF-8"&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="page-break"></div>
+        
+        <h2>HTML Tags Reference</h2>
+        
+        <div class="note">
+            <strong>Tag Categories:</strong> Document & Structural Tags, Hyperlinks & Anchors, Lists, Media Tags, Tables, Forms & Input, Metadata & Scripting, Semantic Tags
+        </div>
+        
+        <h3>Document & Structural Tags</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;html&gt;</code></td><td>Root element of an HTML document</td></tr>
+                <tr><td><code>&lt;head&gt;</code></td><td>Contains metadata and links to scripts/styles</td></tr>
+                <tr><td><code>&lt;body&gt;</code></td><td>Contains the content of the document</td></tr>
+                <tr><td><code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code></td><td>Headings of different levels</td></tr>
+                <tr><td><code>&lt;p&gt;</code></td><td>Paragraph</td></tr>
+                <tr><td><code>&lt;br&gt;</code></td><td>Line break</td></tr>
+                <tr><td><code>&lt;hr&gt;</code></td><td>Horizontal line</td></tr>
+                <tr><td><code>&lt;div&gt;</code></td><td>Container element used to group together other elements</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>Hyperlinks & Anchors</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;a&gt;</code></td><td>Hyperlink</td></tr>
+                <tr><td><code>&lt;link&gt;</code></td><td>External resources (CSS, favicon)</td></tr>
+                <tr><td><code>&lt;base&gt;</code></td><td>Base URL for relative links</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>Lists</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;ul&gt;</code></td><td>Unordered list</td></tr>
+                <tr><td><code>&lt;ol&gt;</code></td><td>Ordered list</td></tr>
+                <tr><td><code>&lt;li&gt;</code></td><td>List item</td></tr>
+                <tr><td><code>&lt;dl&gt;</code></td><td>Description list</td></tr>
+                <tr><td><code>&lt;dt&gt;</code></td><td>Description term</td></tr>
+                <tr><td><code>&lt;dd&gt;</code></td><td>Description definition</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>Media Tags</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;img&gt;</code></td><td>Image</td></tr>
+                <tr><td><code>&lt;audio&gt;</code></td><td>Audio player</td></tr>
+                <tr><td><code>&lt;video&gt;</code></td><td>Video player</td></tr>
+                <tr><td><code>&lt;source&gt;</code></td><td>Media source for <code>&lt;audio&gt;</code>/<code>&lt;video&gt;</code></td></tr>
+                <tr><td><code>&lt;track&gt;</code></td><td>Text tracks for <code>&lt;audio&gt;</code>/<code>&lt;video&gt;</code></td></tr>
+                <tr><td><code>&lt;picture&gt;</code></td><td>Container for multiple image resources</td></tr>
+                <tr><td><code>&lt;iframe&gt;</code></td><td>Inline frame used to operate another website in your own!</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>Tables</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;table&gt;</code></td><td>Table container</td></tr>
+                <tr><td><code>&lt;tr&gt;</code></td><td>Table row</td></tr>
+                <tr><td><code>&lt;td&gt;</code></td><td>Table cell</td></tr>
+                <tr><td><code>&lt;th&gt;</code></td><td>Table header cell</td></tr>
+                <tr><td><code>&lt;caption&gt;</code></td><td>Table caption/title</td></tr>
+                <tr><td><code>&lt;thead&gt;</code></td><td>Table header section</td></tr>
+                <tr><td><code>&lt;tbody&gt;</code></td><td>Table body section</td></tr>
+                <tr><td><code>&lt;tfoot&gt;</code></td><td>Table footer section</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="page-break"></div>
+        
+        <h3>Forms & Input</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;form&gt;</code></td><td>Form container</td></tr>
+                <tr><td><code>&lt;input&gt;</code></td><td>Single-line input</td></tr>
+                <tr><td><code>&lt;textarea&gt;</code></td><td>Multi-line input</td></tr>
+                <tr><td><code>&lt;button&gt;</code></td><td>Clickable button</td></tr>
+                <tr><td><code>&lt;select&gt;</code></td><td>Dropdown menu</td></tr>
+                <tr><td><code>&lt;option&gt;</code></td><td>Dropdown option</td></tr>
+                <tr><td><code>&lt;optgroup&gt;</code></td><td>Group of options</td></tr>
+                <tr><td><code>&lt;label&gt;</code></td><td>Label for input</td></tr>
+                <tr><td><code>&lt;fieldset&gt;</code></td><td>Group of related form elements</td></tr>
+                <tr><td><code>&lt;legend&gt;</code></td><td>Caption for fieldset</td></tr>
+                <tr><td><code>&lt;datalist&gt;</code></td><td>List of predefined options</td></tr>
+                <tr><td><code>&lt;meter&gt;</code></td><td>Measurement within a known range</td></tr>
+                <tr><td><code>&lt;progress&gt;</code></td><td>Task completion progress</td></tr>
+                <tr><td><code>&lt;output&gt;</code></td><td>Result of a calculation</td></tr>
+            </tbody>
+        </table>
+        
+        <h3>Semantic Tags</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>&lt;header&gt;</code></td><td>Intro or navigation section</td></tr>
+                <tr><td><code>&lt;footer&gt;</code></td><td>Footer section</td></tr>
+                <tr><td><code>&lt;main&gt;</code></td><td>Main content</td></tr>
+                <tr><td><code>&lt;section&gt;</code></td><td>Content section</td></tr>
+                <tr><td><code>&lt;article&gt;</code></td><td>Independent content block</td></tr>
+                <tr><td><code>&lt;nav&gt;</code></td><td>Navigation links</td></tr>
+                
