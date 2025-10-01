@@ -1,0 +1,170 @@
+@font-face 
+{
+    font-family: Fontspring;
+    src: url('./Fontspring-DEMO-organetto-bold.otf');
+}
+
+@font-face 
+{
+    font-family: Helvetica;
+    src: url('./Fontspring-DEMO-organetto-bold.otf');
+}
+
+*
+{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html, body
+{
+    width: 100%;
+    height: 100%;
+
+    .CONTENT
+    {
+        width: 100%;
+        // background-color: aquamarine;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        .poster
+        {
+            width: 50%;
+            height: 100%;
+            background-color: efebe1;
+            // border: 0.3rem solid black;
+            border-radius: 0.3rem;
+            padding: 3rem 4rem;
+
+            .LogoSection
+            {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .colortheme
+                {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .color1
+                    {
+                        width: 3rem;
+                        height: 1rem;
+                        background-color: #252325;
+                    }
+                    .color2
+                    {
+                        width: 3rem;
+                        height: 1rem;
+                        background-color: #b77955;
+                    }
+                    .color3
+                    {
+                        width: 3rem;
+                        height: 1rem;
+                        background-color: #34314a;
+                    }
+                }
+
+                .logo
+                {
+                    img 
+                    {
+                        width: 9rem;
+                        height: 5rem;
+                    }
+                }
+            }
+
+            .textContent
+            {
+                width: 100%;
+                padding-top: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .name
+                {
+                    h1 
+                    {
+                        font-size: 7rem;
+                        text-align: left;
+                        font-family: Fontspring;
+                        color: #262021;
+                    }
+                }
+
+                .desc
+                {
+                    p 
+                    {
+                        text-align: right;
+                        color: #b77955;
+                        font-size: 1.2rem;
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    }
+                }
+            }
+
+            .imgPoster
+            {
+                width: 100%;
+                padding-left: 0.5rem;
+
+                img 
+                {
+                    width: 100%;
+                    // aspect-ratio: 1 / 1;
+                }
+            }
+
+            .FinalContent
+            {
+                width: 100%;
+                padding: 1rem 0rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .desc
+                {
+                    padding-left: 0.5rem;
+                    p 
+                    {
+                        font-size: 1.2rem;
+                        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                    }
+                }
+
+                .btn
+                {
+                    .btnExplore
+                    {
+                        padding: 0.8rem 1.7rem;
+                        background-color: #34314a;
+                        color: white;
+                        font-size: 1.5rem;
+                        border: none;
+                        border-radius: 0.5rem;
+                    }
+
+                    .btnExplore:hover
+                    {
+                        background-color: #252325;
+                        cursor: pointer;
+                        border-radius: 0.5rem;
+                        scale: 0.95;
+                    }
+                }
+            }
+        }
+    }
+}
