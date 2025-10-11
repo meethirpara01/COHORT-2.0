@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+main section {
+  height: 100%;
+  flex-grow: 1;
+  background-color: rebeccapurple;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+}
+main section:hover {
+  flex-grow: 3;
+}
+main section:nth-child(1) {
+  background-image: url(https://i.pinimg.com/736x/f7/4a/c8/f74ac8bd257801f0b7ed418bc0117c17.jpg);
+}
+main section:nth-child(2) {
+  background-image: url(https://i.pinimg.com/736x/d7/e1/de/d7e1deaca75743267a629b81b8327614.jpg);
+}
+main section:nth-child(3) {
+  background-image: url(https://i.pinimg.com/736x/79/dc/f4/79dcf49f8a2687a7032ee82ca5bc6520.jpg);
+}
+main section:nth-child(4) {
+  background-image: url(https://i.pinimg.com/736x/d3/92/5a/d3925a159849201ec525ab7c6e56493a.jpg);
+}
+main section:nth-child(5) {
+  background-image: url(https://i.pinimg.com/736x/0c/ad/44/0cad44bc82bb9b2f49d60f76c1ca09c4.jpg);
+}/*# sourceMappingURL=style.css.map */
