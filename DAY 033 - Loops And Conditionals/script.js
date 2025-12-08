@@ -126,7 +126,7 @@
 // 13
 let balance = 1000;
 for (let i = 0; i < 3; i++) {
-    let askWithdrawal = prompt("ENTER AMOUNT TO WITHDRAWAL: ");
+    let askWithdrawal = +prompt("ENTER AMOUNT TO WITHDRAWAL: ");
     if (askWithdrawal > balance) {
         console.log("Insufficient balance!!");
         break;
