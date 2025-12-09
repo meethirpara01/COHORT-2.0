@@ -63,5 +63,21 @@ console.log(fruits);
 for(let i = 0; i < fruits.length; i++)
 {
     console.log(fruits[i]);
-    
 }
+
+// 9
+let person = {
+    "name": "M E E T",
+    "age": 20,
+    "city": "SURAT"
+}
+console.log(person);
+console.log(person?.name);
+console.log(person?.age);
+console.log(person?.city);
+
+// 10
+setTimeout(function ()
+{
+    console.log("TIME'S UP!");
+}, 2000);
