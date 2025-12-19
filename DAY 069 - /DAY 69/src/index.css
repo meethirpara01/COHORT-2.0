@@ -1,0 +1,423 @@
+@font-face {
+  font-family: GilroyLight;
+  src: url(../fonts/Gilroy-Light.ttf);
+}
+@font-face {
+  font-family: GilroyRegular;
+  src: url(../fonts/Gilroy-Regular.ttf);
+}
+@font-face {
+  font-family: GilroyUltraLight;
+  src: url(../fonts/Gilroy-UltraLight.ttf);
+}
+@font-face {
+  font-family: GilroyThin;
+  src: url(../fonts/Gilroy-Thin.ttf);
+}
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding: 5px 20px;
+}
+html .navbar,
+body .navbar {
+  width: 100%;
+  background-color: white;
+  padding: 15px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0%;
+  z-index: 999;
+}
+html .navbar .left h1,
+body .navbar .left h1 {
+  font-family: GilroyLight;
+}
+html .navbar .center,
+body .navbar .center {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+html .navbar .center h3 a,
+body .navbar .center h3 a {
+  text-decoration: none;
+  font-family: GilroyUltraLight;
+  color: black;
+  padding: 0.6rem 1rem;
+}
+html .navbar .center h3:hover a,
+body .navbar .center h3:hover a {
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 8rem;
+}
+html .navbar .right button,
+body .navbar .right button {
+  padding: 0.6rem 1.2rem;
+  background-color: #0D1A2D;
+  color: white;
+  border: none;
+  border-radius: 10rem;
+  text-align: center;
+  font-family: GilroyUltraLight;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+html .navbar .right button:hover,
+body .navbar .right button:hover {
+  scale: 0.95;
+}
+html .sectionOne,
+body .sectionOne {
+  width: 100%;
+  aspect-ratio: 16/7.2;
+  margin-top: 2rem;
+  background-image: url(./assets/20251220_0050_Tennis\ Academy\ Hero\ Banner_remix_01kcw0v7z1fc49wgn7wd16csda.png);
+  background-position: bottom;
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+}
+html .sectionOne h1,
+body .sectionOne h1 {
+  color: white;
+  font-family: GilroyRegular;
+  font-size: 3.5rem;
+  text-align: center;
+}
+html .sectionOne p,
+body .sectionOne p {
+  color: white;
+  font-family: GilroyLight;
+  font-size: 1.3rem;
+  text-align: center;
+}
+html .sectionOne button,
+body .sectionOne button {
+  padding: 0.6rem 1.2rem;
+  background-color: #0D1A2D;
+  color: white;
+  border: none;
+  border-radius: 10rem;
+  text-align: center;
+  font-family: GilroyUltraLight;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+html .sectionOne .buttomPart,
+body .sectionOne .buttomPart {
+  width: 100%;
+  position: absolute;
+  bottom: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+html .sectionOne .buttomPart .left,
+body .sectionOne .buttomPart .left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+html .sectionOne .buttomPart .left p,
+body .sectionOne .buttomPart .left p {
+  color: white;
+  font-family: GilroyLight;
+  font-size: 1.1rem;
+  text-align: start;
+}
+html .sectionOne .buttomPart .left .imgagepart,
+body .sectionOne .buttomPart .left .imgagepart {
+  width: 110px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(500px);
+  backdrop-filter: blur(50px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+html .sectionOne .buttomPart .left .imgagepart img,
+body .sectionOne .buttomPart .left .imgagepart img {
+  width: 35px;
+  height: 35px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+}
+html .sectionOne .buttomPart .left .imgagepart .propic1,
+body .sectionOne .buttomPart .left .imgagepart .propic1 {
+  left: 10%;
+  z-index: 5;
+}
+html .sectionOne .buttomPart .left .imgagepart .propic2,
+body .sectionOne .buttomPart .left .imgagepart .propic2 {
+  left: 36%;
+  z-index: 4;
+}
+html .sectionOne .buttomPart .left .imgagepart .propic3,
+body .sectionOne .buttomPart .left .imgagepart .propic3 {
+  left: 62%;
+  z-index: 3;
+}
+html .sectionOne .buttomPart .right,
+body .sectionOne .buttomPart .right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+html .sectionOne .buttomPart .right h3,
+body .sectionOne .buttomPart .right h3 {
+  color: white;
+  font-family: GilroyThin;
+  font-size: 1rem;
+}
+html .sectionOne .buttomPart .right h3 a,
+body .sectionOne .buttomPart .right h3 a {
+  color: white;
+}
+html .sectionTwo,
+body .sectionTwo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+html .sectionTwo .textContent,
+body .sectionTwo .textContent {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+html .sectionTwo .textContent button,
+body .sectionTwo .textContent button {
+  background-color: white;
+  color: #0D1A2D;
+  font-family: GilroyRegular;
+  font-size: 18px;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgb(184, 184, 184);
+  border-radius: 8rem;
+  cursor: pointer;
+}
+html .sectionTwo .textContent button:hover,
+body .sectionTwo .textContent button:hover {
+  scale: 0.95;
+}
+html .sectionTwo .textContent p,
+body .sectionTwo .textContent p {
+  font-family: GilroyRegular;
+  font-size: 1.8rem;
+  text-align: start;
+}
+html .sectionTwo .cardContainer,
+body .sectionTwo .cardContainer {
+  width: 100%;
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+html .sectionTwo .cardContainer .left,
+body .sectionTwo .cardContainer .left {
+  width: 440px;
+  height: 400px;
+  background-color: #0D1A2D;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: none;
+  border-radius: 50px;
+  padding: 2rem 0rem;
+  padding-left: 2rem;
+  gap: 1.5rem;
+}
+html .sectionTwo .cardContainer .left img,
+body .sectionTwo .cardContainer .left img {
+  width: 95px;
+}
+html .sectionTwo .cardContainer .left p,
+body .sectionTwo .cardContainer .left p {
+  font-family: GilroyRegular;
+  font-size: 1.9rem;
+  color: white;
+}
+html .sectionTwo .cardContainer .left p span,
+body .sectionTwo .cardContainer .left p span {
+  color: gray;
+}
+html .sectionTwo .cardContainer .left .buttomPart,
+body .sectionTwo .cardContainer .left .buttomPart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+html .sectionTwo .cardContainer .left .buttomPart div,
+body .sectionTwo .cardContainer .left .buttomPart div {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 50px;
+  background-color: #2EB3FF;
+  text-align: center;
+}
+html .sectionTwo .cardContainer .left .buttomPart p,
+body .sectionTwo .cardContainer .left .buttomPart p {
+  text-align: center;
+  font-family: GilroyRegular;
+  font-size: 1.5rem;
+  color: gray;
+}
+html .sectionTwo .cardContainer .center,
+body .sectionTwo .cardContainer .center {
+  width: 440px;
+  height: 400px;
+  background-image: url(./assets/20251220_0226_Confident\ Fitness\ Enthusiast_remix_01kcw6a9ycekxs509tehsj71je.png);
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50px;
+}
+html .sectionTwo .cardContainer .center button,
+body .sectionTwo .cardContainer .center button {
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  color: white;
+  font-family: GilroyRegular;
+  font-size: 1.5rem;
+  padding: 0.8rem 1rem;
+  border: 0.1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8rem;
+  cursor: pointer;
+}
+html .sectionTwo .cardContainer .right,
+body .sectionTwo .cardContainer .right {
+  width: 440px;
+  height: 400px;
+  background-color: #F6F8FC;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: none;
+  border-radius: 50px;
+  padding: 2rem 0rem;
+  padding-left: 2rem;
+  gap: 0.5rem;
+}
+html .sectionTwo .cardContainer .right .textContent,
+body .sectionTwo .cardContainer .right .textContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+html .sectionTwo .cardContainer .right .textContent h1,
+body .sectionTwo .cardContainer .right .textContent h1 {
+  font-size: 4.5rem;
+  font-family: GilroyRegular;
+  color: #0D1A2D;
+}
+html .sectionTwo .cardContainer .right .textContent h4,
+body .sectionTwo .cardContainer .right .textContent h4 {
+  font-size: 1.5rem;
+  font-family: GilroyRegular;
+  color: #0D1A2D;
+}
+html .sectionTwo .cardContainer .right .textContent p,
+body .sectionTwo .cardContainer .right .textContent p {
+  font-family: GilroyRegular;
+  font-size: 1.2rem;
+  color: gray;
+}
+html .sectionTwo .cardContainer .right .score,
+body .sectionTwo .cardContainer .right .score {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+html .sectionTwo .cardContainer .right .score .level,
+body .sectionTwo .cardContainer .right .score .level {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.2rem;
+}
+html .sectionTwo .cardContainer .right .score .level p,
+body .sectionTwo .cardContainer .right .score .level p {
+  font-family: GilroyRegular;
+  font-size: 1.2rem;
+}
+html .sectionTwo .cardContainer .right .score .scores,
+body .sectionTwo .cardContainer .right .score .scores {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.8rem;
+}
+html .sectionTwo .cardContainer .right .score .scores .circule,
+body .sectionTwo .cardContainer .right .score .scores .circule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+html .sectionTwo .cardContainer .right .score .scores .circule .cir,
+body .sectionTwo .cardContainer .right .score .scores .circule .cir {
+  width: 15px;
+  height: 15px;
+  background-color: #2EB5FF;
+  border: none;
+  border-radius: 50%;
+}
+html .sectionTwo .cardContainer .right .score .points,
+body .sectionTwo .cardContainer .right .score .points {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+html .sectionTwo .cardContainer .right .score .points p,
+body .sectionTwo .cardContainer .right .score .points p {
+  font-family: GilroyRegular;
+  font-size: 1.2rem;
+}/*# sourceMappingURL=index.css.map */
