@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* *
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html
+{
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+} */
+
+@font-face {
+  font-family: misob;
+  src: url(./font/miso-bold.otf);
+}
+
+@font-face {
+  font-family: misol;
+  src: url(./font/miso-light.otf);
+}
+
+@font-face {
+  font-family: miso;
+  src: url(./font/miso.otf);
+}
+
