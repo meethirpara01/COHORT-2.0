@@ -1,0 +1,110 @@
+@font-face {
+    font-family: gilroy;
+    src: url(./Font/Gilroy-Thin.ttf);
+}
+
+@font-face {
+    font-family: gilroyR;
+    src: url(./Font/Gilroy-Regular.ttf);
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: gilroy;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    .container {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        background-color: #2f2f2f;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 30px;
+    }
+
+    .card1 {
+        width: 320px;
+        height: 440px;
+        border-radius: 32px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+
+        .glass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 45%;
+
+            /* blur */
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+
+            /* 🔑 smooth mixer edge */
+            mask-image: linear-gradient(to top, black 75%, transparent 100%);
+        }
+
+
+
+        .content {
+            position: absolute;
+            bottom: 0;
+            padding: 22px;
+            color: white;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            h3 {
+                font-size: 25px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-family: gilroyR;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+            .elements {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .network {
+                    display: flex;
+                    gap: 18px;
+
+                    h4 {
+                        display: flex;
+                        gap: 4px;
+                        font-size: 20px;
+                    }
+                }
+
+                button {
+                    font-size: 16px;
+                    background: white;
+                    color: black;
+                    border: none;
+                    border-radius: 99px;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

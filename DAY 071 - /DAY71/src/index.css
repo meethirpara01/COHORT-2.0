@@ -1,13 +1,106 @@
-*
-{
-  margin: 0;
-  padding: 0;
+@charset "UTF-8";
+@font-face {
+  font-family: gilroy;
+  src: url(./Font/Gilroy-Thin.ttf);
+}
+@font-face {
+  font-family: gilroyR;
+  src: url(./Font/Gilroy-Regular.ttf);
+}
+* {
+  margin: 0%;
+  padding: 0%;
   box-sizing: border-box;
+  font-family: gilroy;
 }
 
-body, html
-{
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+html,
+body {
+  width: 100%;
+  height: 100%;
 }
-
+html .container,
+body .container {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background-color: #2f2f2f;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 30px;
+}
+html .card1,
+body .card1 {
+  width: 320px;
+  height: 440px;
+  border-radius: 32px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+html .card1 .glass,
+body .card1 .glass {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45%;
+  /* blur */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  /* 🔑 smooth mixer edge */
+  -webkit-mask-image: linear-gradient(to top, black 75%, transparent 100%);
+          mask-image: linear-gradient(to top, black 75%, transparent 100%);
+}
+html .card1 .content,
+body .card1 .content {
+  position: absolute;
+  bottom: 0;
+  padding: 22px;
+  color: white;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+html .card1 .content h3,
+body .card1 .content h3 {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: gilroyR;
+}
+html .card1 .content p,
+body .card1 .content p {
+  font-size: 18px;
+}
+html .card1 .content .elements,
+body .card1 .content .elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html .card1 .content .elements .network,
+body .card1 .content .elements .network {
+  display: flex;
+  gap: 18px;
+}
+html .card1 .content .elements .network h4,
+body .card1 .content .elements .network h4 {
+  display: flex;
+  gap: 4px;
+  font-size: 20px;
+}
+html .card1 .content .elements button,
+body .card1 .content .elements button {
+  font-size: 16px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 99px;
+  padding: 10px 20px;
+  cursor: pointer;
+}/*# sourceMappingURL=index.css.map */
