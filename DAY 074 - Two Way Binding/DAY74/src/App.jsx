@@ -7,7 +7,7 @@ const App = () => {
     console.log("Submited");
     console.log(firstName);
     // console.log(firstName);
-    
+
     let oldUsers = [...allUsers];
     oldUsers.push(firstName);
     setallUsers(oldUsers);
@@ -24,7 +24,7 @@ const App = () => {
       <form onSubmit={(e) => {
         submitHandler(e);
       }}>
-        <input required type="text" value={firstName} onChange={(e) => {setFirstName(e.target.value)}} placeholder='Enter Name' />
+        <input required type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value) }} placeholder='Enter Name' />
         <button>Submit</button>
       </form>
 
