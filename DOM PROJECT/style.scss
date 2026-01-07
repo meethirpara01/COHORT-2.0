@@ -9,19 +9,19 @@
 @font-face {
     font-family: aeonik;
     font-weight: 200;
-    src: url(./Aeonik-Light.ttf);
+    src: url(./font/Aeonik-Light.ttf);
 }
 @font-face 
 {
     font-family: aeonik;
     font-weight: 500;
-    src: url(./Aeonik-Regular.ttf);
+    src: url(./font/Aeonik-Regular.ttf);
 }
 @font-face 
 {
     font-family: aeonik;
     font-weight: 700;
-    src: url(./Aeonik-Bold.ttf);
+    src: url(./font/Aeonik-Bold.ttf);
 }
 
 *
@@ -59,9 +59,10 @@ html, body
             padding: 40px;
             padding-top: 80px;
             display: flex;
-            flex-wrap: wrap;
+            // flex-wrap: wrap;
             align-items: flex-start;
             gap: 40px;
+            position: absolute;
 
             .elem
             {
@@ -105,7 +106,19 @@ html, body
             padding: 40px;
             font-size: 60px;
             display: none;
+            position: absolute;
 
+            .back {
+                position: absolute;
+                right: 5%;
+                background-color: red;
+                padding: 10px 11px;
+                border: none;
+                border-radius: 10px;
+                font-size: 20px;
+                font-weight: 500;
+
+            }
         }
     }
 }
