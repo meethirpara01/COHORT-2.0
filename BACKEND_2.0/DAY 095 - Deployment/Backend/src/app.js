@@ -1,11 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const noteModel = require("./models/notes.model");
+const path = require("path");
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static("./public"))
 
 app.get("/api/notes", async (req, res) => {
     const notes = await noteModel.find();
@@ -45,5 +47,9 @@ app.patch("/api/notes/:id", async (req, res) => {
         note
     });
 });
+
+app.use("*name", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"))
+})
 
 module.exports = app;
