@@ -26,7 +26,7 @@ authRoute.post("/register", async (req, res) => {
 
     const token = jwt.sign({
         id: user._id
-    }, process.env.JWT_SECRET);
+    }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     res.cookie("JWT_TOKEN", token);
 
@@ -68,14 +68,29 @@ authRoute.post("/login", async (req, res) => {
 
     const token = jwt.sign({
         id: user._id 
-    }, process.env.JWT_SECRET);
+    }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.cookie("jwt_token", token);
+    res.cookie("JWT_TOKEN", token);
 
     res.status(201).json({
         message: "User Login Successfully",
         user
     });
 });
+
+authRoute.get("/get-me", async (req, res) => {
+
+    const token = req.cookies.JWT_TOKEN;
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
+
+    const user = await userModel.findById(decoded.id);
+
+    res.status(200).json({
+        name: user.username,
+        email: user.email,
+    })
+})
 
 module.exports = authRoute;
