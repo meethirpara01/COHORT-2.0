@@ -1,0 +1,15 @@
+---> AUTHENTICATION 
+        - REGISTER
+        - LOGIN
+        - LOGOUT (TOKEN BLACKLISTING)
+          [OTP BASED REGISTRATION]
+
+---> POST
+        - CREATE
+        - CAN THE THE FEED
+        - LIKE POST (COLLECTION TYPES)
+        - SAVE POST
+    
+---> USERS
+        - FOLLOWERS
+        - FOLLOWING
