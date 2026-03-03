@@ -1,5 +1,5 @@
 const postModel = require("../models/post.model");
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebto ken");
 const ImageKit = require("@imagekit/nodejs");
 const { toFile } = require("@imagekit/nodejs");
 const likeModel = require("../models/like.model");
