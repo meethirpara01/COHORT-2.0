@@ -1,0 +1,109 @@
+@mixin flex-column($gap: 0rem) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+.feed-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 1rem;
+
+    .feed {
+        max-width: 300px;
+        width: 100%;
+
+        .posts {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+            .post {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                background-color: rgb(35, 35, 35);
+                border-radius: 10px;
+
+                .user {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    .img-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 2px solid transparent;
+                        border-radius: 50%;
+                        background: conic-gradient(from 45deg, #f9ce34, #ee2a7b, #f9ce34) border-box;
+
+                        img {
+                            width: 2rem;
+                            aspect-ratio: 1 / 1;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+                img {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+
+                .botton {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+
+                    .icon {
+                        display: flex;
+                        justify-content: space-between;
+
+                        .left {
+                            display: flex;
+                            gap: 0.5rem;
+
+                            .Like {
+                                color: red;
+                            }
+
+                            button {
+                                background: transparent;
+                                border: none;
+                                outline: none;
+                            }
+
+                            svg {
+                                width: 1.7rem;
+                                aspect-ratio: 1 / 1;
+                                color: white;
+                            }
+                        }
+
+                        .right {
+                            button {
+                                background: transparent;
+                                border: none;
+                                outline: none;
+                            }
+
+                            svg {
+                                width: 1.7rem;
+                                aspect-ratio: 1 / 1;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
