@@ -15,6 +15,8 @@ userRoute.post("/reject/:username", identifyUser, userController.RejectRequestCo
 
 userRoute.post("/unfollow/:username", identifyUser, userController.unFollowUserController);
 
-userRoute.get("/followersList/", identifyUser, userController.GetFollowersListController);
+userRoute.get("/followersList", identifyUser, userController.GetFollowersListController);
+
+userRoute.get("/followingList", identifyUser, userController.GetFollowingListController);
 
 module.exports = userRoute;

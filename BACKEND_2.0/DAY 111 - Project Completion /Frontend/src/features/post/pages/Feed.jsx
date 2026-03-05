@@ -22,7 +22,7 @@ const Feed = () => {
 
     return (
         <main className='feed-page'>
-            <Nav />
+            {/* <Nav /> */}
             <div className="feed">
                 <div className="posts">
                     {/* <Post /> */}

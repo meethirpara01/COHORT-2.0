@@ -3,104 +3,100 @@ const userModel = require("../models/user.model");
 
 async function followUserController(req, res) {
 
-    const followerUsername = req.user.username;
+    const followerId = req.user.id;
     const followeeUsername = req.params.username;
 
-    if (followerUsername === followeeUsername) {
-        return res.status(400).json({
-            message: "You Can Not Follow Your Self"
+    const followee = await userModel.findOne({ username: followeeUsername });
+
+    if (!followee) {
+        return res.status(404).json({
+            message: "User you are trying to follow does not exist"
         });
     }
 
-    const isFolloweeExist = await userModel.findOne({
-        username: followeeUsername
-    });
-
-    if (!isFolloweeExist) {
+    if (followerId.toString() === followee._id.toString()) {
         return res.status(400).json({
-            message: "User you are trying to follow dose not exist"
+            message: "You cannot follow yourself"
         });
     }
 
     const followRecord = await followModel.findOne({
-        follower: followerUsername,
-        followee: followeeUsername
+        follower: followerId,
+        followee: followee._id
     });
 
     if (!followRecord) {
+
         const followRequest = await followModel.create({
-            follower: followerUsername,
-            followee: followeeUsername,
+            follower: followerId,
+            followee: followee._id,
             status: "pending"
         });
 
         return res.status(201).json({
-            message: `You sent follow request to ${followeeUsername}`,
+            message: `Follow request sent to ${followee.username}`,
             follow: followRequest
         });
     }
-    else {
-        if (followRecord.status === "pending") {
-            return res.status(200).json({
-                message: `Request already sent to ${followeeUsername}`,
-                follow: followRecord
-            });
-        }
-        if (followRecord.status === "accepted") {
-            return res.status(200).json({
-                message: `You Already following ${followeeUsername}`,
-                follow: followRecord
-            });
-        }
-        if (followRecord.status === "rejected") {
 
-            followRecord.status = "pending";
+    if (followRecord.status === "pending") {
+        return res.status(200).json({
+            message: "Request already sent",
+            follow: followRecord
+        });
+    }
 
-            await followRecord.save();
+    if (followRecord.status === "accepted") {
+        return res.status(200).json({
+            message: `You already follow ${followee.username}`,
+            follow: followRecord
+        });
+    }
 
-            return res.status(200).json({
-                message: `Request sent to ${followeeUsername}`,
-                follow: followRecord
-            });
-        }
+    if (followRecord.status === "rejected") {
+        followRecord.status = "pending";
+        await followRecord.save();
+
+        return res.status(200).json({
+            message: `Follow request sent again`,
+            follow: followRecord
+        });
     }
 }
 
 async function GetPendingRequestsController(req, res) {
 
-    const followee = req.user.username
+    const followeeId = req.user.id;
 
-    const pendingRequest = await followModel.find({
-        followee: followee,
-        status: "pending"
-    });
-
-    if (pendingRequest.length === 0) {
-        return res.status(200).json({
-            message: "There is no pending requests"
-        });
-    }
+    const pendingRequest = await followModel
+        .find({
+            followee: followeeId,
+            status: "pending"
+        })
+        .populate("follower", "username profileImage");
 
     res.status(200).json({
-        message: "Requests are coming to this users",
+        message: "Pending requests fetched",
         pendingRequests: pendingRequest
     });
 }
 
 async function AcceptRequestController(req, res) {
 
-    const followeeUsername = req.user.username;
+    const followeeId = req.user.id;
     const followerUsername = req.params.username;
 
-    if (followeeUsername === followerUsername) {
-        return res.status(400).json({
-            message: "You Can Not Follow Your Self"
+    const follower = await userModel.findOne({ username: followerUsername });
+
+    if (!follower) {
+        return res.status(404).json({
+            message: "User not found"
         });
     }
 
     const requestRecord = await followModel.findOne({
-        follower: followerUsername,
-        followee: followeeUsername,
+        follower: follower._id,
+        followee: followeeId,
         status: "pending"
     });
 
@@ -114,25 +110,27 @@ async function AcceptRequestController(req, res) {
     await requestRecord.save();
 
     res.status(200).json({
-        message: `Request accepted of ${followerUsername}`,
+        message: "Request accepted",
         requestRecord
     });
 }
 
 async function RejectRequestController(req, res) {
 
-    const followeeUsername = req.user.username;
+    const followeeId = req.user.id;
     const followerUsername = req.params.username;
 
-    if (followeeUsername === followerUsername) {
-        return res.status(400).json({
-            message: "You Can Not Follow Your Self"
+    const follower = await userModel.findOne({ username: followerUsername });
+
+    if (!follower) {
+        return res.status(404).json({
+            message: "User not found"
         });
     }
 
     const requestRecord = await followModel.findOne({
-        follower: followerUsername,
-        followee: followeeUsername,
+        follower: follower._id,
+        followee: followeeId,
         status: "pending"
     });
 
@@ -146,54 +144,73 @@ async function RejectRequestController(req, res) {
     await requestRecord.save();
 
     res.status(200).json({
-        message: `You rejected request from ${followerUsername}`,
+        message: "Request rejected",
         requestRecord
     });
 }
 
 async function unFollowUserController(req, res) {
 
-    const followerUsername = req.user.username;
+    const followerId = req.user.id;
     const followeeUsername = req.params.username;
 
-    if (followerUsername === followeeUsername) {
-        return res.status(400).json({
-            message: "You Can Not UnFollow Your Self"
+    const followee = await userModel.findOne({ username: followeeUsername });
+
+    if (!followee) {
+        return res.status(404).json({
+            message: "User not found"
         });
     }
 
-    const isUserFollowing = await followModel.findOne({
-        follower: followerUsername,
-        followee: followeeUsername
+    const followRecord = await followModel.findOne({
+        follower: followerId,
+        followee: followee._id
     });
 
-    if (!isUserFollowing) {
+    if (!followRecord) {
         return res.status(200).json({
-            message: `You don't Following this ${followeeUsername}`,
+            message: `No active follow relationship`
         });
     }
-    else {
 
-        await isUserFollowing.deleteOne();
+    await followRecord.deleteOne();
 
-        return res.status(200).json({
-            message: `No active follow relationship with ${followeeUsername}`,
-        });
-    }
+    res.status(200).json({
+        message: `Unfollowed ${followee.username}`
+    });
 }
 
-async function GetFollowersListController (req, res) {
+async function GetFollowersListController(req, res) {
 
-    const followerUsername = req.user.username;
+    const followeeId = req.user.id;
 
-    const followersList = await followModel.find({
-        followee: followerUsername,
-        status: "accepted"
-    });
+    const followersList = await followModel
+        .find({
+            followee: followeeId,
+            status: "accepted"
+        })
+        .populate("follower", "username profileImage bio");
 
-    return res.status(200).json({
-        message: "Followers List Fetched Successfully",
+    res.status(200).json({
+        message: "Followers fetched successfully",
         followers: followersList
+    });
+}
+
+async function GetFollowingListController(req, res) {
+
+    const followerId = req.user.id;
+
+    const followingList = await followModel
+        .find({
+            follower: followerId,
+            status: "accepted"
+        })
+        .populate("followee", "username profileImage bio");
+
+    res.status(200).json({
+        message: "Following list fetched successfully",
+        following: followingList
     });
 }
 
@@ -203,5 +220,6 @@ module.exports = {
     AcceptRequestController,
     RejectRequestController,
     unFollowUserController,
-    GetFollowersListController
+    GetFollowersListController,
+    GetFollowingListController
 }

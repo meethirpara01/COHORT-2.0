@@ -15,11 +15,12 @@ app.use(cors({
 // REQUIRE ROUTES
 const authRoute = require("./routes/auth.routes");
 const postRoute = require("./routes/post.routes");
+const userRoute = require("./routes/user.routes");
 // const userRoute = require("./routes/user.routes");
 
 // USING ROUTE
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
-// app.use("/api/users", userRoute);
+app.use("/api/users", userRoute);
 
 module.exports = app;
