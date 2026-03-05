@@ -16,6 +16,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handelSubmit = async (e) => {
+        e.preventDefault();
 
         await handelLogin(username, password);
 

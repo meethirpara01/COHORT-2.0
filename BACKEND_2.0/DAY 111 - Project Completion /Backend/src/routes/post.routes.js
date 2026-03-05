@@ -15,6 +15,8 @@ postroute.get("/detail/:postId", identifyUser, postController.getPostDetailsCont
 
 postroute.post("/like/:postId", identifyUser, postController.likePostController);
 
+postroute.post("/unlike/:postId", identifyUser, postController.unLikePostController);
+
 postroute.get("/feed", identifyUser, postController.getFeedController);
 
 module.exports = postroute; 
