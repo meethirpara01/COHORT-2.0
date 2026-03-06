@@ -2,8 +2,16 @@ import { useState, useRef } from "react"
 import "../style/createpost.scss"
 import { usePost } from "../hooks/usePost";
 import { useNavigate } from "react-router";
+import { Navigate } from 'react-router'
+import { useAuth } from "../../auth/hooks/useAuth";
 
 const CreatePost = () => {
+
+    const { user } = useAuth();
+
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
 
     const { loading, handleCreatePost, } = usePost();
 

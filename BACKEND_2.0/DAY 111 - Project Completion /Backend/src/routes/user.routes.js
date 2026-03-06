@@ -19,4 +19,6 @@ userRoute.get("/followersList", identifyUser, userController.GetFollowersListCon
 
 userRoute.get("/followingList", identifyUser, userController.GetFollowingListController);
 
+userRoute.get("/suggestedusers", identifyUser, userController.GetSuggestedUsersController);
+
 module.exports = userRoute;

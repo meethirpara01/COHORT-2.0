@@ -1,10 +1,10 @@
-
+ 
 
 const Post = ({ user, post, loading, handleLike, handleUnLike }) => {
 
     return (
         <div className="post">
-            <div className="user">
+            <div className="postUser">
                 <div className="img-wrapper">
                     <img src={user.profileImage} alt="" />
                 </div>

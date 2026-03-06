@@ -23,6 +23,12 @@ export async function createPost(imageFile, caption) {
     return response.data;
 }
 
+export async function getPost() {
+    const response = await api.get("/");
+
+    return response.data;
+}
+
 export async function likePost(postId) {
 
     const response = await api.post("/like/" + postId);

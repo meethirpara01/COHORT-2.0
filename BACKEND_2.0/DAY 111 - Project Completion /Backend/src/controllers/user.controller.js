@@ -214,6 +214,34 @@ async function GetFollowingListController(req, res) {
     });
 }
 
+async function GetSuggestedUsersController(req, res) {
+
+    const currentUserId = req.user.id;
+
+    // Find all follow relations of current user
+    const relations = await followModel.find({
+        follower: currentUserId
+    });
+
+    // Extract followee ids
+    const excludedUserIds = relations.map(rel => rel.followee);
+
+    // Exclude current user also
+    excludedUserIds.push(currentUserId);
+
+    // Find users not followed
+    const suggestedUsers = await userModel.find({
+        _id: { $nin: excludedUserIds }
+    })
+        .select("username profileImage bio")
+        .limit(10);
+
+    res.status(200).json({
+        message: "Suggested users fetched successfully",
+        suggestions: suggestedUsers
+    });
+}
+
 module.exports = {
     followUserController,
     GetPendingRequestsController,
@@ -221,5 +249,6 @@ module.exports = {
     RejectRequestController,
     unFollowUserController,
     GetFollowersListController,
-    GetFollowingListController
+    GetFollowingListController,
+    GetSuggestedUsersController
 }

@@ -1,5 +1,32 @@
+import { useEffect } from "react";
+import { useUser } from "../../user/hook/useUser";
+import SuggestedUsers from "../../user/pages/SuggestedUsers"
 import "../leftpart.scss"
+import { useAuth } from "../../auth/hooks/useAuth";
+import { usePost } from "../../post/hooks/usePost";
+import { useNavigate } from "react-router";
+
 const Leftpart = () => {
+
+    const { followers, following, suggestedUsers, handlesuggestedUsers } = useUser();
+    const { user, getMeDetails, handleLogout } = useAuth();
+    const { post, handleGetPost } = usePost();
+    const navigate = useNavigate();
+
+    let numberOfPost = post.length;
+
+    const handleLogoutUser = () => {
+        handleLogout();
+
+        navigate("/login")
+    }
+
+    useEffect(() => {
+        handlesuggestedUsers();
+        getMeDetails();
+        handleGetPost();
+    }, []);
+
     return (
         <div className="left-part">
             <div className="logo">
@@ -8,25 +35,25 @@ const Leftpart = () => {
             </div>
             <div className="profile">
                 <div className="profile-data">
-                    <img src="https://images.unsplash.com/photo-1571513722275-4b41940f54b8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" srcset="" />
+                    <img src={user.profileImage} alt="" srcset="" />
                     <div className="text">
-                        <h3>Usrname</h3>
-                        <p>Email</p>
-                        <p>bio</p>
+                        <h3>{user.username}</h3>
+                        <p>{user.email}</p>
+                        <p>{user.bio}</p>
                     </div>
                 </div>
                 <div className="profiledata-count">
                     <div className="count">
                         <div className="post">
-                            <h2>5</h2>
+                            <h2>{numberOfPost}</h2>
                             <h4>Post</h4>
                         </div>
                         <div className="followers">
-                            <h2>12.4</h2>
+                            <h2>{followers.length}</h2>
                             <h4>Followres</h4>
                         </div>
                         <div className="following">
-                            <h2>228</h2>
+                            <h2>{following.length}</h2>
                             <h4>Following</h4>
                         </div>
                     </div>
@@ -35,13 +62,9 @@ const Leftpart = () => {
             <div className="suggetion">
                 <h2>Suggestion</h2>
                 <div className="SuggestionUsers">
-                    <div className="user">
-                        <div className="content">
-                            <img src="https://images.unsplash.com/photo-1571513722275-4b41940f54b8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" srcset="" />
-                            <p>Username</p>
-                        </div>
-                        <button className="follow-button">Follow</button>
-                    </div>
+                    {suggestedUsers.map(user => {
+                        return (<SuggestedUsers user={user} />)
+                    })}
                 </div>
             </div>
             <div className="menu-part">
@@ -65,7 +88,7 @@ const Leftpart = () => {
                 </div>
             </div>
             <div className="logout-button">
-                <button className="button-logout">Logout</button>
+                <button onClick={ handleLogoutUser } className="button-logout">Logout</button>
             </div>
         </div>
     )

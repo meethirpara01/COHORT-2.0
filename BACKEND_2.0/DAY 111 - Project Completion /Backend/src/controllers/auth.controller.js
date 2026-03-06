@@ -34,7 +34,11 @@ async function registerController(req, res) {
         username: user.username
     }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.cookie("JWT_TOKEN", token);
+    res.cookie("JWT_TOKEN", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax"
+    });
 
     res.status(201).json({
         message: "User register Suucessfully",
@@ -49,7 +53,7 @@ async function registerController(req, res) {
 }
 
 
-async function loginController (req, res) {
+async function loginController(req, res) {
     const { username, email, password } = req.body;
 
     const user = await userModel.findOne({
@@ -82,7 +86,11 @@ async function loginController (req, res) {
         username: user.username
     }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    res.cookie("JWT_TOKEN", token);
+    res.cookie("JWT_TOKEN", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax"
+    });
 
     res.status(201).json({
         message: "User Login Suucessfully",
@@ -111,8 +119,18 @@ async function getMeController(req, res) {
     });
 }
 
+async function logoutController(req, res) {
+
+    res.clearCookie("JWT_TOKEN");
+
+    res.status(200).json({
+        message: "User logged out successfully"
+    });
+}
+
 module.exports = {
     registerController,
     loginController,
-    getMeController
+    getMeController,
+    logoutController
 }

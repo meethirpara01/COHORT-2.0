@@ -9,10 +9,11 @@ export const UserContextProvider = ({ children }) => {
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
     const [pendingrequest, setPendingrequest] = useState([]);
+    const [suggestedUsers, setSuggestedUsers] = useState([]);
 
 
     return (
-        <UserContext.Provider value={{ loading, setLoading, followers, setFollowers, following, setFollowing, pendingrequest, setPendingrequest }}>
+        <UserContext.Provider value={{ loading, setLoading, followers, setFollowers, following, setFollowing, pendingrequest, setPendingrequest, suggestedUsers, setSuggestedUsers }}>
             {children}
         </UserContext.Provider>
     )

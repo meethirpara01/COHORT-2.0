@@ -25,3 +25,39 @@ export async function pendingReq() {
 
     return response.data;
 }
+
+export async function followUser(username) {
+
+    const response = await api.post("/follow/" + username);
+
+    return response.data;
+}
+
+export async function unfollowUser(username) {
+
+    const response = await api.post("/unfollow/" + username);
+
+    return response.data;
+}
+
+export async function acceptReq(username) {
+
+    const response = await api.post("/accept/" + username);
+
+    return response.data;
+}
+
+export async function rejectReq(username) {
+
+    const response = await api.post("/reject/" + username);
+
+    return response.data;
+}
+
+export async function suggesteduserList() {
+
+    const response = await api.get("/suggestedusers");
+
+    return response.data;
+}
+

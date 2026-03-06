@@ -1,11 +1,11 @@
 import { useContext } from "react"
 import { UserContext } from "../user.context";
-import { followersList, followingList, pendingReq } from "../services/user.api";
+import { acceptReq, followersList, followingList, followUser, pendingReq, rejectReq, suggesteduserList, unfollowUser } from "../services/user.api";
 
 export const useUser = () => {
     const context = useContext(UserContext);
 
-    const { loading, setLoading, followers, setFollowers, following, setFollowing, pendingrequest, setPendingrequest } = context;
+    const { loading, setLoading, followers, setFollowers, following, setFollowing, pendingrequest, setPendingrequest, suggestedUsers, setSuggestedUsers } = context;
 
     const handelFollowersList = async () => {
 
@@ -49,7 +49,56 @@ export const useUser = () => {
         setLoading(false);
     }
 
+    const handlesuggestedUsers = async () => {
+
+        const response = await suggesteduserList();
+        setSuggestedUsers(response.suggestions)
+        console.log(response);
+    }
+
+    const handlefollowUser = async (username) => {
+
+        const response = await followUser(username);
+        console.log(response);
+        handelFollowingList();
+        handelFollowersList();
+        handelPendingReq();
+        handlesuggestedUsers();
+    }
+    
+    const handleunfollowUser = async (username) => {
+
+        const response = await unfollowUser(username);
+        console.log(response);
+        handelFollowingList();
+        handelFollowersList();
+        handelPendingReq();
+        handlesuggestedUsers();
+    }
+
+    const handleAcceptReq = async (username) => {
+
+        const response = await acceptReq(username);
+        console.log(response);
+        handelFollowingList();
+        handelFollowersList();
+        handelPendingReq();
+        handlesuggestedUsers();
+    }
+    
+    const handlerejectReq = async (username) => {
+
+        const response = await rejectReq(username);
+        console.log(response);
+        handelFollowingList();
+        handelFollowersList();
+        handelPendingReq();
+        handlesuggestedUsers();
+    }
+    
+    
+
     return {
-        loading, followers, handelFollowersList, following, handelFollowingList, pendingrequest, handelPendingReq
+        loading, followers, handelFollowersList, following, handelFollowingList, pendingrequest, handelPendingReq, suggestedUsers, handlefollowUser, handlesuggestedUsers, handleunfollowUser, handleAcceptReq, handlerejectReq, handlesuggestedUsers
     }
 }
