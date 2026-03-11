@@ -1,8 +1,11 @@
 import React from 'react'
+import FaceExpression from './features/Expression/components/FaceExpression'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <FaceExpression />
+    </div>
   )
 }
 
