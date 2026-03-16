@@ -8,7 +8,9 @@ import { Server } from "socket.io";
 // on => EVENT LISNER
 // emit => FIRE THE EVENT
 
-
+// But when using Socket.IO, we must manually create the HTTP server.
+// Why?
+// Because Socket.IO needs direct access to the HTTP server to upgrade the connection to WebSocket.
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, { /* options */ });
