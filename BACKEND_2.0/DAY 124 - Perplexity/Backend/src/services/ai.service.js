@@ -8,5 +8,5 @@ const model = new ChatGoogleGenerativeAI({
 export async function testAi() {
     model.invoke("What is the langchain?").then((response) => {
         console.log("AI Response:", response.text);
-    }); 
+    });     
 }
