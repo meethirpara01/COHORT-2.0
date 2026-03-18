@@ -28,7 +28,8 @@ const searchTool = tool(
                     - latest news
                     - real-time data
                     - current events
-                    - information after 2024`,
+                    - user asks for latest, current, today, recent info
+                    - information may have changed after 2024`,
         schema: z.string().describe("The search query")
     }
 );
