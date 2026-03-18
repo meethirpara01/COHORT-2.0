@@ -5,6 +5,7 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { sendEmail } from "./mail.service.js";
 import { HumanMessage, tool, createAgent } from "langchain";
 import * as z from "zod";
+import { tavilySearch } from "./tavily.service.js";
 
 const emailTool = tool(
     sendEmail, 
@@ -17,7 +18,20 @@ const emailTool = tool(
             html: z.string().describe("The HTML content of the email")
         })
     }
-)
+);
+
+const searchTool = tool(
+    tavilySearch,
+    {
+        name: "searchTool",
+        description: `Use this tool ONLY when the user asks for:
+                    - latest news
+                    - real-time data
+                    - current events
+                    - information after 2024`,
+        schema: z.string().describe("The search query")
+    }
+);
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -35,7 +49,7 @@ const model = new ChatMistralAI({
 
 const agent = createAgent({
     model,
-    tools: [emailTool]
+    tools: [emailTool, searchTool]
 });
 
 const messages = []
@@ -48,7 +62,7 @@ while (true) {
     const response = await agent.invoke({messages})
 
     messages.push(response.messages[response.messages.length - 1])
-    // console.log(response);
+    console.log(response);
     
 
     console.log(`\x1b[34m[AI]\x1b[0m ${response.messages[response.messages.length - 1].content}`)
