@@ -1,12 +1,11 @@
 import { createBrowserRouter } from "react-router";
 import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
+import Dashboard from "../features/chat/pages/Dashboard";
+import Protected from "../features/auth/components/Protected";
+import { Navigate } from "react-router";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <h1>Welcome to the App</h1>
-    },
+export const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />
@@ -14,7 +13,15 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register />
+    },
+    {
+        path: "/",
+        element: <Protected>
+            <Dashboard />
+        </Protected>
+    },
+    {
+        path: "/dashboard",
+        element: <Navigate to="/" replace />
     }
-])
-
-export default router;
+]);
