@@ -4,8 +4,8 @@ import { Navigate } from 'react-router'
 
 const Protected = ({ children }) => {
 
-    const user = useSelector(state => state.auth.user)
-    const loading = useSelector(state => state.auth.loading)
+    const user = useSelector((state) => state.auth.user)
+    const loading = useSelector((state) => state.auth.loading)
 
     if (loading) {
         return <div>Loading...</div>
@@ -15,7 +15,7 @@ const Protected = ({ children }) => {
         return <Navigate to="/login" replace />
     }
 
-  return children
+    return children
 }
 
 export default Protected

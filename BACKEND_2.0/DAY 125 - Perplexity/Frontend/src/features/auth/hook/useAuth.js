@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
-import { register, login, getMe } from "../services/auth.api";
-import { setUser, setLoading, setError } from "../auth.slice";
+import { register, login, getMe } from "../services/auth.api.js";
+import { setUser, setLoading, setError } from "../auth.slice.js";
 
 export function useAuth() {
 
@@ -24,12 +24,11 @@ export function useAuth() {
             dispatch(setLoading(true))
             const data = await login({ email, password })
             console.log(data);
-            dispatch(setUser(data.user))
-
-        } catch (error) {
-            dispatch(setError(error.response?.data?.message || "Login faild"))
-        }
-        finally {
+            
+            dispatch(setUser(data.data.user))
+        } catch (err) {
+            dispatch(setError(err.response?.data?.message || "Login failed"))
+        } finally {
             dispatch(setLoading(false))
         }
     }
