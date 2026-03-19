@@ -11,7 +11,7 @@ const Register = () => {
 
     const navigate = useNavigate()
     const loading = useSelector((state) => state.auth.loading)
-    
+
     const { handleRegister } = useAuth()
 
     const submitForm = async (e) => {
