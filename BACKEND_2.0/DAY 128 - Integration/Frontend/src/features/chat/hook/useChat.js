@@ -76,11 +76,16 @@ export const useChat = () => {
         dispatch(setCurrentChatId(chatId))
     }
 
+    function handleCreateNewChat() {
+        dispatch(setCurrentChatId(null))
+    }
+
 
     return {
         initializeSocketConnection,
         handleSendMessage,
         handleGetChat,
-        handleOpenChats
+        handleOpenChats,
+        handleCreateNewChat
     }
 }

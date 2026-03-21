@@ -37,14 +37,12 @@ const ChatHome = ({ onStartChat }) => {
       <div className='relative max-w-2xl w-full space-y-8'>
         {/* Main Title */}
         <div className='text-center space-y-4'>
-          <h1 className={`text-6xl md:text-7xl font-light tracking-tight ${
-            theme === 'dark' ? 'text-white' : 'text-gray-950'
-          }`}>
+          <h1 className={`text-6xl md:text-7xl font-light tracking-tight ${theme === 'dark' ? 'text-white' : 'text-gray-950'
+            }`}>
             perplexity
           </h1>
-          <p className={`text-xs md:text-sm font-light tracking-wider uppercase ${
-            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-          }`}>
+          <p className={`text-xs md:text-sm font-light tracking-wider uppercase ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+            }`}>
             AI-powered search and research
           </p>
         </div>
@@ -53,12 +51,11 @@ const ChatHome = ({ onStartChat }) => {
         <form onSubmit={handleSubmit} className='w-full'>
           <div className={`
             relative rounded-2xl transition-all duration-300 border backdrop-blur-xl
-            ${isFocused 
-              ? `scale-105 shadow-lg ${
-                  theme === 'dark'
-                    ? 'bg-white/10 shadow-white/10 border-white/20'
-                    : 'bg-gray-900/10 shadow-gray-900/10 border-gray-900/20'
-                }` 
+            ${isFocused
+              ? `scale-105 shadow-lg ${theme === 'dark'
+                ? 'bg-white/10 shadow-white/10 border-white/20'
+                : 'bg-gray-900/10 shadow-gray-900/10 border-gray-900/20'
+              }`
               : theme === 'dark'
                 ? 'bg-white/5 border-white/10'
                 : 'bg-gray-900/5 border-gray-900/10'
@@ -127,9 +124,8 @@ const ChatHome = ({ onStartChat }) => {
 
         {/* Info Text */}
         <div className='text-center pt-4'>
-          <p className={`text-xs md:text-sm font-light ${
-            theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
-          }`}>
+          <p className={`text-xs md:text-sm font-light ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
+            }`}>
             Use AI for instant answers and deep research
           </p>
         </div>

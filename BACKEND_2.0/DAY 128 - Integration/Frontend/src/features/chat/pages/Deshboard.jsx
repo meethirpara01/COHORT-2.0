@@ -10,11 +10,14 @@ const Deshboard = () => {
 
   const chat = useChat()
   const { theme, toggleTheme, mounted } = useTheme()
+
   const [chatInput, setChatInput] = useState('')
   const [isFocused, setIsFocused] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
+  
   const messagesEndRef = useRef(null)
+
   const user = useSelector((state) => state.auth.user)
   const chats = useSelector((state) => state.chat.chats)
   const currentChatId = useSelector((state) => state.chat.currentChatId)
@@ -42,7 +45,7 @@ const Deshboard = () => {
 
     const trimmedMessage = chatInput.trim()
     if (!trimmedMessage) {
-      return  
+      return
     }
 
     console.log(currentChatId);
@@ -62,6 +65,7 @@ const Deshboard = () => {
   const createNewChat = () => {
     setSearchQuery('')
     setSidebarOpen(false)
+    chat.handleCreateNewChat()
   }
 
   // Filter chats based on search
@@ -72,8 +76,8 @@ const Deshboard = () => {
   return (
     <main className={`
       h-screen w-full flex flex-col overflow-hidden transition-colors duration-300
-      ${theme === 'dark' 
-        ? 'bg-gradient-to-br from-black via-[#0b0b0b] to-[#131313] text-white' 
+      ${theme === 'dark'
+        ? 'bg-gradient-to-br from-black via-[#0b0b0b] to-[#131313] text-white'
         : 'bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-950'
       }
     `}>
@@ -93,9 +97,8 @@ const Deshboard = () => {
         {/* Mobile Backdrop */}
         {sidebarOpen && (
           <div
-            className={`md:hidden fixed inset-0 backdrop-blur-sm z-30 transition-all ${
-              theme === 'dark' ? 'bg-black/50' : 'bg-gray-900/50'
-            }`}
+            className={`md:hidden fixed inset-0 backdrop-blur-sm z-30 transition-all ${theme === 'dark' ? 'bg-black/50' : 'bg-gray-900/50'
+              }`}
             onClick={() => setSidebarOpen(false)}
           ></div>
         )}
@@ -184,23 +187,41 @@ const Deshboard = () => {
             onClick={createNewChat}
             className={`
               w-full mb-4 sm:mb-5 rounded-lg border
-              px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-light
-              transition-all duration-300 active:scale-95
+              px-3 sm:px-4 py-2.5 sm:py-3.5 text-xs sm:text-sm font-medium
+              transition-all duration-300 active:scale-95 group
+              relative overflow-hidden
               ${theme === 'dark'
-                ? 'border-white/20 bg-white/5 hover:bg-white/10 text-white hover:border-white/40'
-                : 'border-gray-900/20 bg-gray-900/5 hover:bg-gray-900/10 text-gray-950 hover:border-gray-900/40'
+                ? 'border-white/30 bg-gradient-to-r from-white/20 to-white/10 hover:from-white/30 hover:to-white/20 text-white hover:border-white/50 hover:shadow-lg hover:shadow-white/20'
+                : 'border-gray-900/40 bg-gradient-to-r from-gray-900/20 to-gray-900/10 hover:from-gray-900/30 hover:to-gray-900/20 text-gray-950 hover:border-gray-900/60 hover:shadow-lg hover:shadow-gray-900/10'
               }
             `}
           >
-            + New Chat
+            {/* Gradient overlay on hover */}
+            <span className={`
+              absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
+              ${theme === 'dark'
+                ? 'bg-gradient-to-r from-white/10 to-transparent'
+                : 'bg-gradient-to-r from-gray-900/10 to-transparent'
+              }
+            `}></span>
+
+            {/* Content */}
+            <span className="relative flex items-center justify-center gap-2">
+              <svg className={`w-4 h-4 transition-transform group-hover:scale-110 ${theme === 'dark' ? '' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+              <span className="group-hover:font-semibold">New Chat</span>
+              <svg className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </span>
           </button>
 
           {/* Chat List */}
-          <div className={`space-y-2 flex-1 overflow-y-auto pr-2 ${
-            theme === 'dark' 
-              ? 'scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-700' 
-              : ''
-          }`}>
+          <div className={`space-y-2 flex-1 overflow-y-auto pr-2 ${theme === 'dark'
+            ? 'scrollbar-thin scrollbar-track-zinc-900 scrollbar-thumb-zinc-700'
+            : ''
+            }`}>
             {filteredChats.length > 0 ? (
               filteredChats.map((chatItem, index) => (
                 <button
@@ -251,9 +272,8 @@ const Deshboard = () => {
 
           {/* User Info at bottom */}
           {user && (
-            <div className={`mt-4 sm:mt-6 pt-4 border-t ${
-              theme === 'dark' ? 'border-zinc-700/30' : 'border-gray-200/30'
-            }`}>
+            <div className={`mt-4 sm:mt-6 pt-4 border-t ${theme === 'dark' ? 'border-zinc-700/30' : 'border-gray-200/30'
+              }`}>
               <div className={`
                 rounded-lg p-3 border
                 ${theme === 'dark'
@@ -270,7 +290,7 @@ const Deshboard = () => {
                   ${theme === 'dark' ? 'text-white' : 'text-gray-950'}
                 `}>{user?.name || user?.email || 'User'}</p>
               </div>
-              
+
               {/* Theme Toggle */}
               <div className='mt-4 flex items-center gap-2'>
                 <button
@@ -345,7 +365,7 @@ const Deshboard = () => {
                 `}></div>
               </div>
             </button>
-            
+
             {/* Mobile Chat Title */}
             {currentChatId && chats[currentChatId] && (
               <div className='flex items-center gap-2 flex-1'>
@@ -361,9 +381,8 @@ const Deshboard = () => {
                     ${theme === 'dark' ? 'border-white/30' : 'border-gray-900/30'}
                   `}></div>
                 </div>
-                <h2 className={`text-sm font-light truncate ${
-                  theme === 'dark' ? 'text-white' : 'text-gray-950'
-                }`}>
+                <h2 className={`text-sm font-light truncate ${theme === 'dark' ? 'text-white' : 'text-gray-950'
+                  }`}>
                   {chats[currentChatId]?.title || 'New Chat'}
                 </h2>
               </div>
@@ -544,15 +563,12 @@ const Deshboard = () => {
                         }
                       `}>
                         <div className='flex gap-1 items-center'>
-                          <span className={`w-2 h-2 rounded-full animate-bounce ${
-                            theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
-                          }`} style={{ animationDelay: '0s' }}></span>
-                          <span className={`w-2 h-2 rounded-full animate-bounce ${
-                            theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
-                          }`} style={{ animationDelay: '0.1s' }}></span>
-                          <span className={`w-2 h-2 rounded-full animate-bounce ${
-                            theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
-                          }`} style={{ animationDelay: '0.2s' }}></span>
+                          <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
+                            }`} style={{ animationDelay: '0s' }}></span>
+                          <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
+                            }`} style={{ animationDelay: '0.1s' }}></span>
+                          <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
+                            }`} style={{ animationDelay: '0.2s' }}></span>
                         </div>
                       </div>
                     </div>
@@ -622,4 +638,3 @@ const Deshboard = () => {
 }
 
 export default Deshboard
-          
