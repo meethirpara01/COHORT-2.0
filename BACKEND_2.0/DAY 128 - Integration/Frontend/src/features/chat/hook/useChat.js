@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { initializeSocketConnection } from "../services/chat.socket.js"
 import { sendMessage, getChats, getMessages, deleteChat } from "../services/chat.api.js"
-import { createNewChat, addNewMessage, addMessage, setChats, setCurrentChatId, setLoading, setError } from "../chat.slice.js"
+import { createNewChat, addNewMessage, addMessage, setChats, setCurrentChatId, setLoading, setError, setLoadingResponse } from "../chat.slice.js"
 
 export const useChat = () => {
 
@@ -9,6 +9,7 @@ export const useChat = () => {
 
     async function handleSendMessage({ message, chatId }) {
         dispatch(setLoading(true))
+        dispatch(setLoadingResponse(true))
 
         const data = await sendMessage({ message, chatId })
 
@@ -32,6 +33,7 @@ export const useChat = () => {
         }))
         dispatch(setCurrentChatId(chat._id))
         dispatch(setLoading(false))
+        dispatch(setLoadingResponse(false))
     }
 
     async function handleGetChat() {
@@ -53,20 +55,24 @@ export const useChat = () => {
         dispatch(setLoading(false))
     }
 
-    async function handleOpenChats(chatId) {
+    async function handleOpenChats(chatId, chats) {
 
-        const data = await getMessages(chatId)
-        const { messages } = data
+        console.log(chats[chatId]?.messages.length)
 
-        const formattedMessages = messages.map(msg => ({
-            content: msg.content,
-            role: msg.role
-        }))
+        if (chats[chatId]?.messages.length === 0) {
+            const data = await getMessages(chatId)
+            const { messages } = data
 
-        dispatch(addMessage({
-            chatId,
-            messages: formattedMessages
-        }))
+            const formattedMessages = messages.map(msg => ({
+                content: msg.content,
+                role: msg.role
+            }))
+
+            dispatch(addMessage({
+                chatId,
+                messages: formattedMessages
+            }))
+        }
         dispatch(setCurrentChatId(chatId))
     }
 
