@@ -15,7 +15,7 @@ const Deshboard = () => {
   const [isFocused, setIsFocused] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  
+
   const messagesEndRef = useRef(null)
 
   const user = useSelector((state) => state.auth.user)
@@ -38,6 +38,7 @@ const Deshboard = () => {
     setTimeout(() => {
       chat.handleSendMessage({ message, chatId: null })
     }, 0)
+    setChatInput('')
   }
 
   const handleSubmitMessage = (event) => {
@@ -440,7 +441,8 @@ const Deshboard = () => {
           ) : (
             <>
               {/* Messages Container */}
-              <div className='messages flex-1 space-y-3 md:space-y-4 overflow-y-auto px-3 sm:px-4 md:px-6 py-4 md:py-6 pb-4 md:pb-6'>
+              <div className='messages flex-1 overflow-y-auto px-3 sm:px-4 md:px-6 py-4 md:py-6 pb-4 md:pb-6'>
+                <div className='flex flex-col gap-3 md:gap-4'>
                 {chats[currentChatId]?.messages && chats[currentChatId].messages.length > 0 && (
                   chats[currentChatId].messages.map((message, idx) => (
                     <div
@@ -464,12 +466,12 @@ const Deshboard = () => {
                         </div>
                       )}
 
-                      <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} max-w-[70%] sm:max-w-[65%]`}>
                         <div
                           className={`
                             rounded-xl px-3 sm:px-4 md:px-5 py-2 md:py-3
                             text-xs sm:text-sm md:text-base leading-relaxed
-                            break-words max-w-xs sm:max-w-sm md:max-w-2xl
+                            break-words w-full
                             transition-colors duration-300 border
                             ${message.role === 'user'
                               ? theme === 'dark'
@@ -575,6 +577,7 @@ const Deshboard = () => {
                   </div>
                 )}
                 <div ref={messagesEndRef} />
+                </div>
               </div>
 
               {/* Input Area */}
@@ -586,6 +589,7 @@ const Deshboard = () => {
                   : 'border-gray-200/30 bg-gradient-to-t from-white/50 to-transparent'
                 }
               `}>
+                <div className='w-full'>
                 <div className={`
                   flex gap-2 md:gap-3 items-end transition-all duration-300
                   ${isFocused
@@ -627,6 +631,7 @@ const Deshboard = () => {
                   >
                     <span className='text-sm md:text-lg'>→</span>
                   </button>
+                </div>
                 </div>
               </form>
             </>
