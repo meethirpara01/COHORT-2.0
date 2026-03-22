@@ -72,7 +72,7 @@ const Deshboard = () => {
   // Filter chats based on search
   const filteredChats = Object.values(chats).filter(chat =>
     chat.title.toLowerCase().includes(searchQuery.toLowerCase())
-  )
+  ).reverse()
 
   return (
     <main className={`
@@ -443,140 +443,140 @@ const Deshboard = () => {
               {/* Messages Container */}
               <div className='messages flex-1 overflow-y-auto px-3 sm:px-4 md:px-6 py-4 md:py-6 pb-4 md:pb-6'>
                 <div className='flex flex-col gap-3 md:gap-4'>
-                {chats[currentChatId]?.messages && chats[currentChatId].messages.length > 0 && (
-                  chats[currentChatId].messages.map((message, idx) => (
-                    <div
-                      key={message.id || idx}
-                      className={`flex w-full animate-fade-in gap-2 md:gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      {/* AI Avatar */}
-                      {message.role !== 'user' && (
-                        <div className={`
+                  {chats[currentChatId]?.messages && chats[currentChatId].messages.length > 0 && (
+                    chats[currentChatId].messages.map((message, idx) => (
+                      <div
+                        key={message.id || idx}
+                        className={`flex w-full animate-fade-in gap-2 md:gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                      >
+                        {/* AI Avatar */}
+                        {message.role !== 'user' && (
+                          <div className={`
                           w-5 md:w-6 h-5 md:h-6 rounded-lg
                           flex-shrink-0 flex items-center justify-center border
                           ${theme === 'dark'
-                            ? 'bg-gradient-to-br from-white/20 to-white/5 border-white/10'
-                            : 'bg-gradient-to-br from-gray-900/20 to-gray-900/5 border-gray-900/10'
-                          }
+                              ? 'bg-gradient-to-br from-white/20 to-white/5 border-white/10'
+                              : 'bg-gradient-to-br from-gray-900/20 to-gray-900/5 border-gray-900/10'
+                            }
                         `}>
-                          <div className={`
+                            <div className={`
                             w-2.5 md:w-3 h-2.5 md:h-3 border-2 rounded-full
                             ${theme === 'dark' ? 'border-white/40' : 'border-gray-900/40'}
                           `}></div>
-                        </div>
-                      )}
+                          </div>
+                        )}
 
-                      <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} max-w-[70%] sm:max-w-[65%]`}>
-                        <div
-                          className={`
+                        <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} max-w-[70%] sm:max-w-[65%]`}>
+                          <div
+                            className={`
                             rounded-xl px-3 sm:px-4 md:px-5 py-2 md:py-3
                             text-xs sm:text-sm md:text-base leading-relaxed
                             break-words w-full
                             transition-colors duration-300 border
                             ${message.role === 'user'
-                              ? theme === 'dark'
-                                ? 'rounded-br-none bg-gradient-to-br from-white/15 to-white/5 text-white border-white/20 shadow-lg shadow-white/10'
-                                : 'rounded-br-none bg-gradient-to-br from-blue-500/20 to-blue-500/10 text-gray-950 border-blue-500/30 shadow-lg shadow-blue-500/5'
-                              : theme === 'dark'
-                                ? 'rounded-bl-none border-zinc-700/40 bg-zinc-900/40 text-zinc-100 shadow-lg shadow-black/20'
-                                : 'rounded-bl-none border-gray-200/50 bg-gray-100/50 text-gray-950 shadow-lg shadow-gray-900/5'
-                            }
+                                ? theme === 'dark'
+                                  ? 'rounded-br-none bg-gradient-to-br from-white/15 to-white/5 text-white border-white/20 shadow-lg shadow-white/10'
+                                  : 'rounded-br-none bg-gradient-to-br from-blue-500/20 to-blue-500/10 text-gray-950 border-blue-500/30 shadow-lg shadow-blue-500/5'
+                                : theme === 'dark'
+                                  ? 'rounded-bl-none border-zinc-700/40 bg-zinc-900/40 text-zinc-100 shadow-lg shadow-black/20'
+                                  : 'rounded-bl-none border-gray-200/50 bg-gray-100/50 text-gray-950 shadow-lg shadow-gray-900/5'
+                              }
                           `}
-                        >
-                          {message.role === 'user' ? (
-                            <p className='leading-relaxed'>{message.content}</p>
-                          ) : (
-                            <ReactMarkdown
-                              components={{
-                                p: ({ children }) => <p className='mb-2 md:mb-3 last:mb-0 leading-relaxed'>{children}</p>,
-                                ul: ({ children }) => <ul className='mb-2 md:mb-3 list-disc pl-4 md:pl-5 space-y-0.5 md:space-y-1'>{children}</ul>,
-                                ol: ({ children }) => <ol className='mb-2 md:mb-3 list-decimal pl-4 md:pl-5 space-y-0.5 md:space-y-1'>{children}</ol>,
-                                li: ({ children }) => <li className={theme === 'dark' ? 'text-zinc-100' : 'text-gray-950'}>{children}</li>,
-                                code: ({ children }) => <code className={`
+                          >
+                            {message.role === 'user' ? (
+                              <p className='leading-relaxed'>{message.content}</p>
+                            ) : (
+                              <ReactMarkdown
+                                components={{
+                                  p: ({ children }) => <p className='mb-2 md:mb-3 last:mb-0 leading-relaxed'>{children}</p>,
+                                  ul: ({ children }) => <ul className='mb-2 md:mb-3 list-disc pl-4 md:pl-5 space-y-0.5 md:space-y-1'>{children}</ul>,
+                                  ol: ({ children }) => <ol className='mb-2 md:mb-3 list-decimal pl-4 md:pl-5 space-y-0.5 md:space-y-1'>{children}</ol>,
+                                  li: ({ children }) => <li className={theme === 'dark' ? 'text-zinc-100' : 'text-gray-950'}>{children}</li>,
+                                  code: ({ children }) => <code className={`
                                   rounded px-1.5 md:px-2 py-0.5 md:py-1 font-mono text-xs
                                   ${theme === 'dark'
-                                    ? 'bg-black/40 text-emerald-300 border-emerald-500/30'
-                                    : 'bg-gray-900/40 text-emerald-600 border-emerald-900/30'
-                                  } border
+                                      ? 'bg-black/40 text-emerald-300 border-emerald-500/30'
+                                      : 'bg-gray-900/40 text-emerald-600 border-emerald-900/30'
+                                    } border
                                 `}>{children}</code>,
-                                pre: ({ children }) => <pre className={`
+                                  pre: ({ children }) => <pre className={`
                                   mb-2 md:mb-3 overflow-x-auto rounded-lg
                                   p-2 md:p-4 text-xs border
                                   ${theme === 'dark'
-                                    ? 'bg-black/60 border-zinc-700/60 text-emerald-300'
-                                    : 'bg-gray-900/60 border-gray-700/60 text-emerald-600'
-                                  }
+                                      ? 'bg-black/60 border-zinc-700/60 text-emerald-300'
+                                      : 'bg-gray-900/60 border-gray-700/60 text-emerald-600'
+                                    }
                                 `}>{children}</pre>,
-                                h1: ({ children }) => <h1 className={`text-base md:text-lg font-light mt-2 md:mt-3 mb-1 md:mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-950'}`}>{children}</h1>,
-                                h2: ({ children }) => <h2 className={`text-sm md:text-base font-light mt-2 md:mt-3 mb-1 md:mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-950'}`}>{children}</h2>,
-                                h3: ({ children }) => <h3 className={`text-xs md:text-sm font-light mt-1 md:mt-2 mb-0.5 md:mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-950'}`}>{children}</h3>,
-                              }}
-                              remarkPlugins={[remarkGfm]}
-                            >
-                              {message.content}
-                            </ReactMarkdown>
-                          )}
+                                  h1: ({ children }) => <h1 className={`text-base md:text-lg font-light mt-2 md:mt-3 mb-1 md:mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-950'}`}>{children}</h1>,
+                                  h2: ({ children }) => <h2 className={`text-sm md:text-base font-light mt-2 md:mt-3 mb-1 md:mb-2 ${theme === 'dark' ? 'text-white' : 'text-gray-950'}`}>{children}</h2>,
+                                  h3: ({ children }) => <h3 className={`text-xs md:text-sm font-light mt-1 md:mt-2 mb-0.5 md:mb-1 ${theme === 'dark' ? 'text-white' : 'text-gray-950'}`}>{children}</h3>,
+                                }}
+                                remarkPlugins={[remarkGfm]}
+                              >
+                                {message.content}
+                              </ReactMarkdown>
+                            )}
+                          </div>
                         </div>
-                      </div>
 
-                      {/* User Avatar */}
-                      {message.role === 'user' && (
-                        <div className={`
+                        {/* User Avatar */}
+                        {message.role === 'user' && (
+                          <div className={`
                           w-5 md:w-6 h-5 md:h-6 rounded-lg
                           flex-shrink-0 flex items-center justify-center border
                           ${theme === 'dark'
-                            ? 'bg-gradient-to-br from-white/30 to-white/10 border-white/20'
-                            : 'bg-gradient-to-br from-blue-500/30 to-blue-500/10 border-blue-500/30'
-                          }
+                              ? 'bg-gradient-to-br from-white/30 to-white/10 border-white/20'
+                              : 'bg-gradient-to-br from-blue-500/30 to-blue-500/10 border-blue-500/30'
+                            }
                         `}>
-                          <div className={`
+                            <div className={`
                             w-2 md:w-2.5 h-2 md:h-2.5 rounded-full
                             ${theme === 'dark' ? 'bg-white/60' : 'bg-blue-600/60'}
                           `}></div>
-                        </div>
-                      )}
-                    </div>
-                  ))
-                )}
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  )}
 
-                {/* AI Typing Indicator */}
-                {isLoadingResponse && (
-                  <div className='flex w-full animate-fade-in gap-2 md:gap-3 justify-start'>
-                    <div className={`
+                  {/* AI Typing Indicator */}
+                  {isLoadingResponse && (
+                    <div className='flex w-full animate-fade-in gap-2 md:gap-3 justify-start'>
+                      <div className={`
                       w-5 md:w-6 h-5 md:h-6 rounded-lg
                       flex-shrink-0 flex items-center justify-center border
                       ${theme === 'dark'
-                        ? 'bg-gradient-to-br from-white/20 to-white/5 border-white/10'
-                        : 'bg-gradient-to-br from-gray-900/20 to-gray-900/5 border-gray-900/10'
-                      }
+                          ? 'bg-gradient-to-br from-white/20 to-white/5 border-white/10'
+                          : 'bg-gradient-to-br from-gray-900/20 to-gray-900/5 border-gray-900/10'
+                        }
                     `}>
-                      <div className={`
+                        <div className={`
                         w-2.5 md:w-3 h-2.5 md:h-3 border-2 rounded-full
                         ${theme === 'dark' ? 'border-white/40' : 'border-gray-900/40'}
                       `}></div>
-                    </div>
-                    <div className='flex justify-start'>
-                      <div className={`
+                      </div>
+                      <div className='flex justify-start'>
+                        <div className={`
                         rounded-xl rounded-bl-none border
                         px-3 sm:px-4 md:px-5 py-2 md:py-3
                         ${theme === 'dark'
-                          ? 'border-zinc-700/40 bg-zinc-900/40 shadow-lg shadow-black/20'
-                          : 'border-gray-200/50 bg-gray-100/50 shadow-lg shadow-gray-900/5'
-                        }
+                            ? 'border-zinc-700/40 bg-zinc-900/40 shadow-lg shadow-black/20'
+                            : 'border-gray-200/50 bg-gray-100/50 shadow-lg shadow-gray-900/5'
+                          }
                       `}>
-                        <div className='flex gap-1 items-center'>
-                          <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
-                            }`} style={{ animationDelay: '0s' }}></span>
-                          <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
-                            }`} style={{ animationDelay: '0.1s' }}></span>
-                          <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
-                            }`} style={{ animationDelay: '0.2s' }}></span>
+                          <div className='flex gap-1 items-center'>
+                            <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
+                              }`} style={{ animationDelay: '0s' }}></span>
+                            <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
+                              }`} style={{ animationDelay: '0.1s' }}></span>
+                            <span className={`w-2 h-2 rounded-full animate-bounce ${theme === 'dark' ? 'bg-zinc-400' : 'bg-gray-500'
+                              }`} style={{ animationDelay: '0.2s' }}></span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} />
+                  )}
+                  <div ref={messagesEndRef} />
                 </div>
               </div>
 
@@ -590,48 +590,48 @@ const Deshboard = () => {
                 }
               `}>
                 <div className='w-full'>
-                <div className={`
+                  <div className={`
                   flex gap-2 md:gap-3 items-end transition-all duration-300
                   ${isFocused
-                    ? theme === 'dark'
-                      ? 'bg-white/5 rounded-xl px-3 md:px-4 py-2 md:py-3 border border-white/10'
-                      : 'bg-gray-900/10 rounded-xl px-3 md:px-4 py-2 md:py-3 border border-gray-900/20'
-                    : 'bg-transparent'
-                  }
+                      ? theme === 'dark'
+                        ? 'bg-white/5 rounded-xl px-3 md:px-4 py-2 md:py-3 border border-white/10'
+                        : 'bg-gray-900/10 rounded-xl px-3 md:px-4 py-2 md:py-3 border border-gray-900/20'
+                      : 'bg-transparent'
+                    }
                 `}>
-                  <input
-                    type='text'
-                    value={chatInput}
-                    onChange={(event) => setChatInput(event.target.value)}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    placeholder='Ask me anything...'
-                    className={`
+                    <input
+                      type='text'
+                      value={chatInput}
+                      onChange={(event) => setChatInput(event.target.value)}
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => setIsFocused(false)}
+                      placeholder='Ask me anything...'
+                      className={`
                       w-full bg-transparent outline-none
                       text-sm md:text-base font-light
                       ${theme === 'dark'
-                        ? 'text-white placeholder-zinc-600'
-                        : 'text-gray-950 placeholder-gray-500'
-                      }
+                          ? 'text-white placeholder-zinc-600'
+                          : 'text-gray-950 placeholder-gray-500'
+                        }
                     `}
-                  />
-                  <button
-                    type='submit'
-                    disabled={!chatInput.trim()}
-                    className={`
+                    />
+                    <button
+                      type='submit'
+                      disabled={!chatInput.trim()}
+                      className={`
                       flex-shrink-0 rounded-lg border
                       cursor-pointer px-3 md:px-5 py-2 md:py-2.5
                       font-light transition-all duration-200 active:scale-95
                       disabled:cursor-not-allowed disabled:opacity-40
                       ${theme === 'dark'
-                        ? 'border-white bg-white hover:bg-zinc-50 active:bg-zinc-200 text-black disabled:hover:bg-white'
-                        : 'border-gray-950 bg-gray-950 hover:bg-gray-800 active:bg-gray-700 text-white disabled:hover:bg-gray-950'
-                      }
+                          ? 'border-white bg-white hover:bg-zinc-50 active:bg-zinc-200 text-black disabled:hover:bg-white'
+                          : 'border-gray-950 bg-gray-950 hover:bg-gray-800 active:bg-gray-700 text-white disabled:hover:bg-gray-950'
+                        }
                     `}
-                  >
-                    <span className='text-sm md:text-lg'>→</span>
-                  </button>
-                </div>
+                    >
+                      <span className='text-sm md:text-lg'>→</span>
+                    </button>
+                  </div>
                 </div>
               </form>
             </>

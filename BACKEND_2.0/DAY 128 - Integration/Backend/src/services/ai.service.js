@@ -75,7 +75,7 @@ export async function generateResponse(messages) {
 
     console.log("Before AI call");
 
-    const response = await geminiModel.invoke(formattedMessages);
+    const response = await mistralModel.invoke(formattedMessages);
 
     console.log("After AI call");
 
