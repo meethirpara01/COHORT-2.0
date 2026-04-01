@@ -2,7 +2,7 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { ChatMistralAI } from "@langchain/mistralai"
 import { HumanMessage, SystemMessage, AIMessage, tool, createAgent } from "langchain";
 import * as z from 'zod'
-import { tavilySearch } from "./tavily.service.js";
+import { tavilySearch, searchInternet } from "./tavily.service.js";
 import { sendEmail } from "./mail.service.js";
 
 const geminiModel = new ChatGoogleGenerativeAI({
@@ -18,68 +18,57 @@ const mistralModel = new ChatMistralAI({
 const emailTool = tool(
     sendEmail,
     {
-        name: "emailTool",
-        description: "Use this tool to send an email.",
+        name: "sendEmail",
+        description: "Use this tool to send an email to someone. The input should be a JSON object with 'to', 'subject', and 'body' fields.",
         schema: z.object({
-            to: z.string().describe("The recipient's email address"),
-            subject: z.string().describe("The subject of the email"),
-            html: z.string().describe("The HTML content of the email")
+            to: z.string().describe("The email address of the recipient."),
+            subject: z.string().describe("The subject of the email."),
+            body: z.string().describe("The body content of the email.")
         })
     }
-);
+)
 
-const searchTool = tool(
-    tavilySearch,
+const searchInternetTool = tool(
+    searchInternet,
     {
-        name: "searchTool",
-        description: `Use this tool ONLY when the user asks for:
-                    - latest news
-                    - real-time data
-                    - current events
-                    - user asks for latest, current, today, recent info
-                    - information may have changed after 2024`,
-        schema: z.string().describe("The search query")
+        name: "searchInternet",
+        description: "Use this tool to get the latest information from the internet.",
+        schema: z.object({
+            query: z.string().describe("The search query to look up on the internet.")
+        })
     }
-);
+)
 
-const agent1 = createAgent({
-    model: geminiModel,
-    tools: [emailTool, searchTool]
-});
-
-const agent2 = createAgent({
+const agent = createAgent({
     model: mistralModel,
-    tools: [emailTool, searchTool]
-});
+    tools: [searchInternetTool, emailTool],
+})
+
 
 export async function generateResponse(messages) {
     console.log("RAW:", messages);
 
-    const formattedMessages = messages
-        .map(msg => {
-            if (msg.role === 'user') {
-                return new HumanMessage(msg.content)
-            }
-            else if (msg.role === 'ai') {
-                return new AIMessage(msg.content)
-            }
-            return null
-        })
-        .filter(Boolean)
+    const response = await agent.invoke({
+        messages: [
 
-    console.log("FORMATTED:", formattedMessages);
+            new SystemMessage(`
+               You are a helpful and precise assistant for answering questions.
+                If you don't know the answer, say you don't know. 
+                If the question requires up-to-date information, use the "searchInternet" tool to get the latest information from the internet and then answer based on the search results.
+            `),
 
-    if (formattedMessages.length === 0) {
-        throw new Error("No valid messages for AI")
-    }
+            ...(messages.map(msg => {
+                if (msg.role === 'user') {
+                    return new HumanMessage(msg.content)
+                }
+                else if (msg.role === 'ai') {
+                    return new AIMessage(msg.content)
+                }
+                return null
+            }))]
+    });
 
-    console.log("Before AI call");
-
-    const response = await mistralModel.invoke(formattedMessages);
-
-    console.log("After AI call");
-
-    return response.text
+    return response.messages[response.messages.length - 1].text;
 }
 
 export async function generateChatTitle(message) {

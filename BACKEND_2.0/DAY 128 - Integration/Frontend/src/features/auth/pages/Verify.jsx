@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import { useTheme } from '../../chat/hook/useTheme'
 
 const Verify = () => {
-    const [countdown, setCountdown] = useState(20)
+    const [countdown, setCountdown] = useState(10)
     const navigate = useNavigate()
     const { theme, toggleTheme, mounted } = useTheme()
 

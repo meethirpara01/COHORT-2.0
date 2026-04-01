@@ -1,8 +1,9 @@
-import { tavily } from '@tavily/core'
+import { tavily as Tavily } from "@tavily/core"
 
-const tvly = tavily({ apiKey: process.env.TAVILY_API_KEY })
+const tavily = Tavily({ apiKey: process.env.TAVILY_API_KEY })
 
 export async function tavilySearch(query) {
+    // console.log("Tavily Search Query:", query);
     try {
         const response = await tvly.search(query)
 
@@ -29,4 +30,15 @@ export async function tavilySearch(query) {
         console.error("Tavily Error:", error);
         return "Error fetching search results.";
     }
+}
+
+
+export const searchInternet = async ({ query }) => {
+    const results = await tavily.search(query, {
+        maxResults: 5,
+    })
+
+    console.log(JSON.stringify(results))
+
+    return JSON.stringify(results)
 }
