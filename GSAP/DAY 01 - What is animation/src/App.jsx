@@ -28,6 +28,17 @@ const App = () => {
       delay: 0.5,
     });
 
+    gsap.set(".red", {
+      x: -100,
+      opacity: 0
+    });
+    gsap.to(".red", {
+      x: 200,
+      duration: 1,
+      opacity: 1,
+      delay: 0.5,
+    });
+
   }, []);
 
   return (
@@ -35,7 +46,7 @@ const App = () => {
       <div className="box gradient-green green">TO</div>
       <div className="box gradient-purple purple">FROM</div>
       <div className="box gradient-blue blue">FROM-TO</div>
-      <div className="box gradient-red red">FROM-TO</div>
+      <div className="box gradient-red red">SET</div>
     </div>
   )
 }
