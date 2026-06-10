@@ -19,7 +19,7 @@ const App = () => {
       delay: 0.5,
     });
 
-    gsap.fromTo(".blue", {
+    gsap.fromTo(".flair", {
       x: -100,
     }, {
       rotate: 360,
@@ -45,7 +45,7 @@ const App = () => {
     <div className="container">
       <div className="box gradient-green green">TO</div>
       <div className="box gradient-purple purple">FROM</div>
-      <div className="box gradient-blue blue">FROM-TO</div>
+      <div className="box flair flair--25">FROM-TO</div>
       <div className="box gradient-red red">SET</div>
     </div>
   )

@@ -1,0 +1,9 @@
+.container {
+    padding: 20px;
+    background-color: #0E100F;
+
+    .box {
+        width: 200px;
+        height: 200px;
+    }
+}

@@ -4,10 +4,12 @@
     justify-content: space-around;
     min-height: 100vh;
     flex-direction: column;
-    background-color: #111;
+    background-color: #0E100F;
 
     .box {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
+        font-size: 1rem;
+        color: #fff;
     }
 }
