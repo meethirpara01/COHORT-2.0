@@ -1,41 +1,42 @@
-const loadingElement = document.querySelector('.loading');
+const loadingElement = document.querySelector('.loading h3');
 
 let count  = 0;
 const interval = setInterval(() => {
     count++;
-    loadingElement.textContent = `${count}%`;
+    loadingElement.innerHTML = `${count}%`;
     if(count === 100) {
         clearInterval(interval);
-        animate();
+        landingAnimation();
     }
 }, 20);
 
 
-function animate() {
+function landingAnimation() {
     const tl = gsap.timeline();
 
-    tl.to("loading", {
+    tl.to(".loading", {
         opacity: 0,
-        duration: 1,
+        duration: 1.6,
+        ease: 'power3.out'
     })
     .to(".loader", {
         yPercent: 100,
-        duration: 0.5,
-        ease: "power2.out",
-    }, "<")
-    .to(".background", {
-        scale: 1.1,
-        duration: 0.5,
+        duration: 1.2,
         ease: "expo.out",
-    }, "-=0.7")
-    .from(".heading", {
-        y: 50,
-        opacity: 0,
+    }, "-=0.9")
+    .from(".background img", {
+        scale: 1.2,
+        duration: 1.3,
         ease: "expo.out",
-    }, "-=0.3")
-     .from(".paragraph", {
-        y: 50,
-        opacity: 0,
+    }, "-=1.1")
+    .from(".heading h1", {
+        yPercent: 100,
+        duration: 1.2,
         ease: "expo.out",
-    }, "-=0.2")
+    }, "-=0.97")
+     .from(".paragraph h2", {
+       yPercent: 100,
+        duration: 1.2,
+        ease: "expo.out",
+    }, "-=0.87")
 }

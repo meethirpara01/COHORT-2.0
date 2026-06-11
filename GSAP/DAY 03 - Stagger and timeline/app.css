@@ -4,68 +4,72 @@
     box-sizing: border-box;
 }
 
-html,
 body {
-    width: 100%;
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background-color: black;
+    color: #fff;
 }
 
-.container {
+.loader {
+    height: 100vh;
     width: 100%;
-    min-height: 100vh;
+    background-color: black;
+    position: fixed;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    z-index: 200;
+}
+
+.loading h3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+.background {
+    height: 100vh;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlaytext {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
-.background {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.heading {
+    overflow: hidden;
 }
 
-.overlaytext {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-
-    .heading {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-    }
-
-    .paragraph {
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
+.heading h1 {
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 500;
 }
 
-.loader {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.paragraph {
+    overflow: hidden;
 }
 
-.loading {
-    font-size: 2rem;
-    color: white;
+.paragraph h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    font-weight: 200;
 }
+
