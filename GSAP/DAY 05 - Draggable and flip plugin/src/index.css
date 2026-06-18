@@ -4,34 +4,60 @@
   box-sizing: border-box;
 }
 
+/* :root {
+  color-scheme: dark;
+  --bg-0: #050816;
+  --bg-1: #0b1120;
+  --bg-2: #10192f;
+  --text: #edf2ff;
+  --muted: rgba(226, 232, 255, 0.72);
+  --line: rgba(255, 255, 255, 0.12);
+  --glass: rgba(10, 16, 31, 0.56);
+} */
+
+
 html,
 body {
-  width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--text);
+  background: #fff;
 }
 
 .page1 {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 .page2 {
   width: 100%;
-  height: 70%;
-  /* background-image: url(./assets/Cover.png);
-  background-size: cover; */
-  background:
-    radial-gradient(circle at 30% 20%, #0f172a 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, #1e293b 0%, transparent 40%),
-    #000;
+  min-height: 80vh;
   position: relative;
+  overflow: hidden;
+  background: #111;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 2rem 2rem 0rem 0rem;
 }
 
 .page2 svg {
-  width: 4rem;
+  width: 4.5rem;
   aspect-ratio: 1/1;
   position: absolute;
-  cursor: pointer;
+  cursor: grab;
+  padding: 0.7rem;
+  border-radius: 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.page2 svg:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .svg1 {
@@ -101,4 +127,92 @@ body {
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .hero-panel {
+    min-height: auto;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .hero-copy h1 {
+    max-width: 100%;
+  }
+
+  .hero-meta {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page2 svg {
+    width: 4.2rem;
+    padding: 0.55rem;
+  }
+
+  .svg1 {
+    top: 10%;
+    left: 66%;
+  }
+
+  .svg2 {
+    top: 72%;
+    left: 6%;
+  }
+
+  .svg3 {
+    top: 24%;
+    left: 36%;
+  }
+
+  .svg4 {
+    top: 83%;
+    left: 64%;
+  }
+
+  .svg5 {
+    top: 36%;
+    left: 80%;
+  }
+
+  .svg6 {
+    top: 57%;
+    left: 18%;
+  }
+
+  .svg7 {
+    top: 9%;
+    left: 52%;
+  }
+
+  .svg8 {
+    top: 76%;
+    left: 30%;
+  }
+
+  .svg9 {
+    top: 43%;
+    left: 72%;
+  }
+
+  .svg10 {
+    top: 18%;
+    left: 6%;
+  }
+
+  .svg11 {
+    top: 63%;
+    left: 44%;
+  }
+
+  .svg12 {
+    top: 20%;
+    left: 20%;
+  }
+
+  .svg13 {
+    top: 72%;
+    left: 1%;
+  }
 }

@@ -10,5 +10,5 @@ Draggable.create(".page2 svg", {
   edgeResistance: 0.65,
   bounds: ".page2",
   inertia: true,
-  dragResistance: 0.6,
+  dragResistance: 0.4,
 });
