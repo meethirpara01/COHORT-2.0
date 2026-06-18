@@ -1,0 +1,104 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.page1 {
+  width: 100%;
+  height: 100%;
+}
+
+.page2 {
+  width: 100%;
+  height: 70%;
+  /* background-image: url(./assets/Cover.png);
+  background-size: cover; */
+  background:
+    radial-gradient(circle at 30% 20%, #0f172a 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, #1e293b 0%, transparent 40%),
+    #000;
+  position: relative;
+}
+
+.page2 svg {
+  width: 4rem;
+  aspect-ratio: 1/1;
+  position: absolute;
+  cursor: pointer;
+}
+
+.svg1 {
+  top: 12%;
+  left: 73%;
+}
+
+.svg2 {
+  top: 68%;
+  left: 15%;
+}
+
+.svg3 {
+  top: 25%;
+  left: 42%;
+}
+
+.svg4 {
+  top: 81%;
+  left: 67%;
+}
+
+.svg5 {
+  top: 37%;
+  left: 88%;
+}
+
+.svg6 {
+  top: 56%;
+  left: 24%;
+}
+
+.svg7 {
+  top: 9%;
+  left: 58%;
+}
+
+.svg8 {
+  top: 74%;
+  left: 36%;
+}
+
+.svg9 {
+  top: 44%;
+  left: 79%;
+}
+
+.svg10 {
+  top: 18%;
+  left: 11%;
+}
+
+.svg11 {
+  top: 63%;
+  left: 52%;
+}
+
+.svg12 {
+  top: 20%;
+  left: 28%;
+}
+
+.svg13 {
+  top: 70%;
+  left: 5%;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
